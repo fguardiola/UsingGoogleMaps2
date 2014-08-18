@@ -1,0 +1,129 @@
+﻿@model UsingGoogleMaps2.Models.AreaToSearsh
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_Tm0LskVQEn34c-5WTBMC4velnOZb7vQ&sensor=false"></script>
+<style>
+    #map_canvas img {
+        max-width: none;
+    }
+</style>
+<!-- This css is to give a nice big popup "info window" when a marker is clicked on the map -->
+<style>
+    .infoDiv {
+        height: 200px;
+        width: 300px;
+        -webkit-user-select: none;
+        background-color: white;
+    }
+</style>
+
+
+<h2>Hello, Search for Burgains</h2>
+<br />
+
+<div id="map_canvas" style="height:600px ;"></div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AreaToSearsh</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Postcode)
+        </div>
+        <div>
+
+
+            @Html.DropDownListFor(model => model.Postcode, new SelectList(Enum.GetValues(typeof(UsingGoogleMaps2.Models.PostCodes))))
+        </div>
+        <p>
+            <input type="submit" value="Search" />
+        </p>
+    </fieldset>
+}
+
+
+<!-- Enclose the Javascript in a "section" so that it is rendered in the correct order after scripts have been loaded etc -->
+@section scripts {
+    <section class="scripts">
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                initialize();
+            });
+            function initialize() {
+
+                var dublinCoordinates = new google.maps.LatLng(53.350073, -6.261553);
+                // center: new google.maps.LatLng(dublinLat, dublinLong),
+
+                var mapOptions = {
+                    center: dublinCoordinates,
+                    zoom: 13,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                // This makes the div with id "map_canvas" a google map
+                var map = new google.maps.Map(document.getElementById("map_canvas"),
+                    mapOptions);
+
+                // This shows adding a simple pin "marker"
+                var dublinMarker = new google.maps.Marker({
+                    position: dublinCoordinates,
+                    map: map,
+                    title: 'Dublin'
+                });
+                // You can make markers different colors
+                dublinMarker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
+                // a sample list of JSON encoded data of places of pubs in DUblin, ireland
+                // you can either make up a JSON list server side, or call it from a controller using JSONResult
+                /*
+                Howl at the Moon-->7/8 Lower Mount Street, Dublin 2
+                Dicey's Garden-->21-25 Harcourt St, Dublin 2
+                O'Reilly's-->George's Quay, Dublin 2
+                darkey kelly's-->19 Fishamble St, Dublin 8*/
+
+                //comprobar si latitud y longitud estan en el correcto orden
+                var pubData = [
+                          { "Id": 1, "PlaceName": "Howl at the moon", "OpeningHours": "9-5, M-F", "GeoLong": "53.339426", "GeoLat": "-6.245727" },
+                          { "Id": 2, "PlaceName": "Dicey's Garden", "OpeningHours": "9-1,2-5, M-F", "GeoLong": "53.335983", "GeoLat": "-6.263532" },
+                          { "Id": 3, "PlaceName": "O'Reilly's", "OpeningHours": "9-7, M-F", "GeoLong": "53.347260", "GeoLat": "-6.254101" },
+                          { "Id": 4, "PlaceName": "Darkey kelly's", "OpeningHours": "10-6, M-F", "GeoLong": "53.344067", "GeoLat": "-6.270058" }
+                ];
+
+                // Using the JQuery "each" selector to iterate through the JSON list and drop marker pins
+                //    $.each(pubData, function (i, item)
+                //    {
+                //        var pubmarker = new google.maps.Marker({
+                //            'position': new google.maps.LatLng(item.GeoLong, item.GeoLat),
+                //            'map': map,
+                //            'title': item.PlaceName
+                //        });
+
+                //        pubmarker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+
+
+                //    // put in some information about each json object - in this case, the opening hours.
+                //    var infowindow = new google.maps.InfoWindow({
+                //        content: "<div class='infoDiv'><h2>" + item.PlaceName + "</h2>" + "<div><h4>Opening hours: " + item.OpeningHours + "</h4></div></div>"
+                //    });
+
+                //    // finally hook up an "OnClick" listener to the map so it pops up out info-window when the marker-pin is clicked!
+                //    google.maps.event.addListener(pubmarker, 'click', function () {
+                //        infowindow.open(map, pubmarker);
+                //    });
+                //})
+
+            }
+        </script>
+
+    </section>
+}
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
