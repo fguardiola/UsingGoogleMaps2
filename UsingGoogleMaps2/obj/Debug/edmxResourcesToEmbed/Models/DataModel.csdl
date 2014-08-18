@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PubsDealsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Business">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FK_Company" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Business_ToCompany" FromRole="Business" ToRole="Company" />
+    <NavigationProperty Name="EEVAs" Relationship="Self.FK_EEVA_ToBusiness" FromRole="Business" ToRole="EEVA" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Contact" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Businesses" Relationship="Self.FK_Business_ToCompany" FromRole="Company" ToRole="Business" />
+  </EntityType>
+  <EntityType Name="EEVA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FK_Business" Type="Int32" Nullable="false" />
+    <Property Name="Attribute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Business" Relationship="Self.FK_EEVA_ToBusiness" FromRole="EEVA" ToRole="Business" />
+  </EntityType>
+  <Association Name="FK_Business_ToCompany">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="Business" Type="Self.Business" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Business">
+        <PropertyRef Name="FK_Company" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EEVA_ToBusiness">
+    <End Role="Business" Type="Self.Business" Multiplicity="1" />
+    <End Role="EEVA" Type="Self.EEVA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EEVA">
+        <PropertyRef Name="FK_Business" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PubsDealsDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Businesses" EntityType="Self.Business" />
+    <EntitySet Name="Companies" EntityType="Self.Company" />
+    <EntitySet Name="EEVAs" EntityType="Self.EEVA" />
+    <AssociationSet Name="FK_Business_ToCompany" Association="Self.FK_Business_ToCompany">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Business" EntitySet="Businesses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EEVA_ToBusiness" Association="Self.FK_EEVA_ToBusiness">
+      <End Role="Business" EntitySet="Businesses" />
+      <End Role="EEVA" EntitySet="EEVAs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
