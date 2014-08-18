@@ -34,7 +34,8 @@ namespace UsingGoogleMaps2.Controllers
         }
 
        
-      //cambio para ver si tortoise lo detecta  
+      //cambio para ver si tortoise lo detecta
+        //parece que si
         
         public ActionResult ShowAllPubsOnMap()
         {
