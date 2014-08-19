@@ -22,6 +22,8 @@ namespace UsingGoogleMaps2.Models
 
     public double Longitude { get; set; }
     public string Info { get; set; }
+
+   public ICollection<EEVA> EEVAs { get; set; }
     
     }
 }
