@@ -58,8 +58,16 @@ namespace UsingGoogleMaps2.Controllers
           
             return View();
         }
-        
+    
+        [HttpPost]
+        public ActionResult EnterAdressReturnLongLat(Register reg)
+        {
+            var latLng = reg.LatLng;
+           
 
+            return View();
+        }
+        
         
           
        

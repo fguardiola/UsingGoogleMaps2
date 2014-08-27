@@ -49,6 +49,10 @@
         geocoder.geocode({ 'address': address }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
+                // set longitude and latitude in format (latitude,longitude) ex-> (53.3835946, -6.24807850000002)
+                document.getElementById('latLng').value = results[0].geometry.location;
+                
+
                 var marker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location
@@ -109,7 +113,9 @@
                 @Html.EditorFor(model => model.CompanyEmail)
                 @Html.ValidationMessageFor(model => model.CompanyEmail)
             </div>
-
+            @*<div>@Html.TextBoxFor(model => model.LatLng ,new{ id = "latLng" } ) </div>*@
+            <div>@Html.HiddenFor(model => model.LatLng, new { id = "latLng" })</div>
+            
             <p>
                 <input type="submit" value="Create" />
             </p>
@@ -121,6 +127,3 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@

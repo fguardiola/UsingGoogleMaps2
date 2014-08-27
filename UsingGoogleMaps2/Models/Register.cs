@@ -15,6 +15,8 @@ namespace UsingGoogleMaps2.Models
         [Display(Name = "Company's county")]
         public string CompanyCounty { get; set; }
         [Required]
+        public string LatLng { get; set; }
+        [Required]
         [Display(Name = "Company's address")]
         public string CompanyAddress { get; set; }
         [Required]
