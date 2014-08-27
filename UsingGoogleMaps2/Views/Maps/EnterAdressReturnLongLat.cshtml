@@ -1,0 +1,126 @@
+﻿@model UsingGoogleMaps2.Models.Register
+
+@{
+    ViewBag.Title = "EnterAdressReturnLongLat";
+}
+
+<h2>EnterAdressReturnLongLat</h2>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_Tm0LskVQEn34c-5WTBMC4velnOZb7vQ&sensor=false"></script>
+<style>
+    #map_canvas img {
+        max-width: none;
+    }
+</style>
+<!-- This css is to give a nice big popup "info window" when a marker is clicked on the map -->
+<style>
+    .infoDiv {
+        height: 200px;
+        width: 300px;
+        -webkit-user-select: none;
+        background-color: white;
+    }
+</style>
+<h2>These are the pubs that currently has burgains</h2>
+<br />
+<div id="map_canvas" style="height:600px ;"></div>
+<br />
+<!-- Enclose the Javascript in a "section" so that it is rendered in the correct order after scripts have been loaded etc -->
+@section scripts {
+<script>
+    var geocoder;
+    var map;
+    $(document).ready(function () {
+        initialize();
+    });
+
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(53.350073, -6.261553);
+        var mapOptions = {
+            zoom: 13,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    }
+
+    function codeAddress() {
+        var address = document.getElementById("address").value;
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
+    }
+</script>
+}
+
+@* Form *@
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Register</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompanyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompanyName)
+            @Html.ValidationMessageFor(model => model.CompanyName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompanyCounty)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompanyCounty)
+            @Html.ValidationMessageFor(model => model.CompanyCounty)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompanyAddress)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.CompanyAddress, new { id = "address" })<input type="button" value="Encode" onclick="codeAddress()">
+            @*@Html.EditorFor(model => model.CompanyAddress, new { id = "address" })*@
+          
+            @Html.ValidationMessageFor(model => model.CompanyAddress)
+        </div>  
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CompanyPhone)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyPhone)
+                @Html.ValidationMessageFor(model => model.CompanyPhone)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CompanyEmail)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyEmail)
+                @Html.ValidationMessageFor(model => model.CompanyEmail)
+            </div>
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+
+</fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
