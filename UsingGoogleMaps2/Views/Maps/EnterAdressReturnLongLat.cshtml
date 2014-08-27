@@ -4,7 +4,6 @@
     ViewBag.Title = "EnterAdressReturnLongLat";
 }
 
-<h2>EnterAdressReturnLongLat</h2>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_Tm0LskVQEn34c-5WTBMC4velnOZb7vQ&sensor=false"></script>
 <style>
     #map_canvas img {
@@ -26,7 +25,7 @@
 <br />
 <!-- Enclose the Javascript in a "section" so that it is rendered in the correct order after scripts have been loaded etc -->
 @section scripts {
-<script>
+    <script>
     var geocoder;
     var map;
     $(document).ready(function () {
@@ -51,7 +50,7 @@
                 map.setCenter(results[0].geometry.location);
                 // set longitude and latitude in format (latitude,longitude) ex-> (53.3835946, -6.24807850000002)
                 document.getElementById('latLng').value = results[0].geometry.location;
-                
+
 
                 var marker = new google.maps.Marker({
                     map: map,
@@ -62,10 +61,12 @@
             }
         });
     }
-</script>
+    </script>
 }
 
-@* Form *@
+
+
+
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -74,53 +75,58 @@
         <legend>Register</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.CompanyName)
+            @Html.LabelFor(model => model.PubName)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyName)
-            @Html.ValidationMessageFor(model => model.CompanyName)
+            @Html.EditorFor(model => model.PubName)
+            @Html.ValidationMessageFor(model => model.PubName)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.CompanyCounty)
+            @Html.LabelFor(model => model.PubCategory)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyCounty)
-            @Html.ValidationMessageFor(model => model.CompanyCounty)
+            @Html.DropDownList("PropertyTypes")
+            @Html.ValidationMessageFor(model => model.PubCategory)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.CompanyAddress)
+            @Html.LabelFor(model => model.PubArea)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.CompanyAddress, new { id = "address" })<input type="button" value="Encode" onclick="codeAddress()">
-            @*@Html.EditorFor(model => model.CompanyAddress, new { id = "address" })*@
-          
-            @Html.ValidationMessageFor(model => model.CompanyAddress)
-        </div>  
-            <div class="editor-label">
-                @Html.LabelFor(model => model.CompanyPhone)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.CompanyPhone)
-                @Html.ValidationMessageFor(model => model.CompanyPhone)
-            </div>
+            @Html.DropDownList("Areas")
+            @Html.ValidationMessageFor(model => model.PubArea)
+        </div>
+        <div>@Html.HiddenFor(model => model.LatLng, new { id = "latLng" })</div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.CompanyEmail)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.CompanyEmail)
-                @Html.ValidationMessageFor(model => model.CompanyEmail)
-            </div>
-            @*<div>@Html.TextBoxFor(model => model.LatLng ,new{ id = "latLng" } ) </div>*@
-            <div>@Html.HiddenFor(model => model.LatLng, new { id = "latLng" })</div>
-            
-            <p>
-                <input type="submit" value="Create" />
-            </p>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PubAddress)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PubAddress, new { id = "address" })<input type="button" value="Check address on map" onclick="codeAddress()">
+            @Html.ValidationMessageFor(model => model.PubAddress)
+        </div>
 
-</fieldset>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DistanceTillAreaCenter)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DistanceTillAreaCenter)
+            @Html.ValidationMessageFor(model => model.DistanceTillAreaCenter)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactEmail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactEmail)
+            @Html.ValidationMessageFor(model => model.ContactEmail)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
 }
 
 <div>

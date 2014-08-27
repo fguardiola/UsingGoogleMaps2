@@ -169,3 +169,4 @@ C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2\bin\zh-Ha
 C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2\obj\Debug\UsingGoogleMaps2.dll
 C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2\obj\Debug\UsingGoogleMaps2.pdb
+C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2\obj\Debug\UsingGoogleMaps2.csprojResolveAssemblyReference.cache

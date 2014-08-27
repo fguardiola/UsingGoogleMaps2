@@ -312,8 +312,10 @@
     <Content Include="Views\Maps\ShowAllPubsOnMap.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Maps\Search.cshtml" />
-    <Content Include="Views\Maps\EnterAdressReturnLongLat.cshtml" />
     <Content Include="Views\Maps\SHowaddress.cshtml" />
+    <Content Include="Views\Maps\register2.cshtml" />
+    <Content Include="Views\Maps\EnterAdressReturnLongLat2.cshtml" />
+    <Content Include="Views\Maps\EnterAdressReturnLongLat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

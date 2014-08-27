@@ -6,27 +6,33 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace UsingGoogleMaps2.Models
 {
+    
+    
+
+    
     public class Register
     {
         [Required]
-        [Display(Name = "Company's name")]
-        public string CompanyName { get; set; }
+        [Display(Name = "Pub's name")]
+        public string PubName { get; set; }
         [Required]
-        [Display(Name = "Company's county")]
-        public string CompanyCounty { get; set; }
+        [Display(Name = "Pub's category")]
+        public string PubCategory { get; set; }
+        [Required]
+        [Display(Name = "Pub's area")]
+        public string PubArea { get; set; }
         [Required]
         public string LatLng { get; set; }
         [Required]
-        [Display(Name = "Company's address")]
-        public string CompanyAddress { get; set; }
-        [Required]
-        [Phone]
-        [Display(Name = "Company's contact phone")]
-        public string CompanyPhone { get; set; }
+        [Display(Name = "Pub's address")]
+        public string PubAddress { get; set; }
+         [Required]
+        [Display(Name = "Pub's distance till area center")]
+        public double DistanceTillAreaCenter { get; set; }
         [Required]
         [EmailAddress]
-        [Display(Name = "Company's contact email")]
-        public string CompanyEmail { get; set; }
+        [Display(Name = "Pub's contact email")]
+        public string ContactEmail { get; set; }
 
         
     }

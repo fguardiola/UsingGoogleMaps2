@@ -55,7 +55,8 @@ namespace UsingGoogleMaps2.Controllers
 
         public ActionResult EnterAdressReturnLongLat()
         {
-          
+            ViewBag.Areas = new SelectList(SearchPreferences.Areas);
+            ViewBag.PropertyTypes = new SelectList(SearchPreferences.PropertyTypes);
             return View();
         }
     
