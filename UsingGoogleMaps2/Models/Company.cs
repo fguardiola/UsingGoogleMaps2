@@ -16,13 +16,14 @@ namespace UsingGoogleMaps2.Models
     {
         public Company()
         {
-            this.Businesses = new HashSet<Business>();
+            this.Pubs = new HashSet<Pub>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Contact { get; set; }
+        public string ContactPhone { get; set; }
+        public string ContactEmail { get; set; }
     
-        public virtual ICollection<Business> Businesses { get; set; }
+        public virtual ICollection<Pub> Pubs { get; set; }
     }
 }

@@ -204,9 +204,34 @@ ul#menu {
             text-decoration: none;
         }
 
-
-/* page elements
+/* menu2
 ----------------------------------------------------------*/
+ul#menu2 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0 0 5px;
+    padding: 0;
+    text-align: right;
+}
+
+    ul#menu2 li {
+        /*display: inline;*/
+        display: block;
+        list-style: none;
+        padding-left: 15px;
+    }
+
+        ul#menu2 li a {
+            background: none;
+            color: #999;
+            text-decoration: none;
+        }
+
+            ul#menu2 li a:hover {
+                color: #333;
+                text-decoration: none;
+            }
+/*----------------------------------------------------------*/
 /* featured */
 .featured {
     background-color: #fff;

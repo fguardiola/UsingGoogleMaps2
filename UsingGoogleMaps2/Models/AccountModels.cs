@@ -11,21 +11,21 @@ namespace UsingGoogleMaps2.Models
     public class UsersContext : DbContext
     {
         public UsersContext()
-            : base("DefaultConnection")
+            : base("name=PubDealsDBEntities")
         {
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
     }
 
-    [Table("UserProfile")]
-    public class UserProfile
-    {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-    }
+    //[Table("UserProfile")]
+    //public class UserProfile
+    //{
+    //    [Key]
+    //    [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+    //    public int UserId { get; set; }
+    //    public string UserName { get; set; }
+    //}
 
     public class RegisterExternalLoginModel
     {
@@ -70,11 +70,36 @@ namespace UsingGoogleMaps2.Models
         public bool RememberMe { get; set; }
     }
 
+    //public class RegisterModel
+    //{
+    //    [Required]
+    //    [Display(Name = "User name")]
+    //    public string UserName { get; set; }
+
+    //    [Required]
+    //    [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+    //    [DataType(DataType.Password)]
+    //    [Display(Name = "Password")]
+    //    public string Password { get; set; }
+
+    //    [DataType(DataType.Password)]
+    //    [Display(Name = "Confirm password")]
+    //    [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+    //    public string ConfirmPassword { get; set; }
+    //}
     public class RegisterModel
     {
         [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        [Display(Name = "Company's name")]
+        public string CompanyName { get; set; }
+        [Required]
+        [Phone]
+        [Display(Name = "Company's contact phone")]
+        public string CompanyPhone { get; set; }
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Company's contact email")]
+        public string CompanyEmail { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

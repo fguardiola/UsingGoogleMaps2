@@ -79,8 +79,16 @@ namespace UsingGoogleMaps2.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
+                    WebSecurity.CreateUserAndAccount(model.CompanyName, model.Password);
+                    WebSecurity.Login(model.CompanyName, model.Password);
+                    //database save fields
+                    PubDealsDBEntities db = new PubDealsDBEntities();
+                    Company company = new Company();
+                    company.Name = model.CompanyName;
+                    company.ContactPhone= model.CompanyPhone;
+                    company.ContactEmail = model.CompanyEmail;
+                    db.Companies.Add(company);
+                    db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)

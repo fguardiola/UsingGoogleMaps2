@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -183,19 +185,70 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MapsController.cs" />
+    <Compile Include="Controllers\PubDealsController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AreaToSearsh.cs" />
+    <Compile Include="Models\Company.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DateCustomValidation.cs" />
+    <Compile Include="Models\DatModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Deal.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DealEEVA.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DublinAreasCoordinate.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\FakeRepository.cs" />
     <Compile Include="Models\IRepository.cs" />
-    <Compile Include="Models\Pub.cs" />
+    <Compile Include="Models\Pub.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PubDealRepository.cs" />
+    <Compile Include="Models\PubEEVA.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PubTest.cs" />
     <Compile Include="Models\Register.cs" />
-    <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\SearchPreferences.cs" />
+    <Compile Include="Models\SearchResult.cs" />
+    <Compile Include="Models\SearchResults.cs" />
+    <Compile Include="Models\Stat.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserProfile.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_Membership.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_OAuthMembership.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_Roles.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +308,23 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\DatModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DatModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DatModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DatModel.edmx</DependentUpon>
+      <LastGenOutput>DatModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DatModel.edmx.diagram">
+      <DependentUpon>DatModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\DatModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DatModel.edmx</DependentUpon>
+      <LastGenOutput>DatModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -308,20 +378,30 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Maps\ShowPubsOnMap.cshtml" />
-    <Content Include="Views\Maps\ShowAllPubsOnMap.cshtml" />
+    <Content Include="Views\PubDeals\ShowPubsOnMap.cshtml" />
+    <Content Include="Views\PubDeals\ShowAllPubsOnMap.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Maps\Search.cshtml" />
-    <Content Include="Views\Maps\SHowaddress.cshtml" />
-    <Content Include="Views\Maps\register2.cshtml" />
-    <Content Include="Views\Maps\EnterAdressReturnLongLat2.cshtml" />
-    <Content Include="Views\Maps\EnterAdressReturnLongLat.cshtml" />
+    <Content Include="Views\PubDeals\SearchDealNOOO.cshtml" />
+    <Content Include="Views\PubDeals\SHowaddress.cshtml" />
+    <Content Include="Views\PubDeals\RegisterPub.cshtml" />
+    <Content Include="Views\PubDeals\ThankYouRegisterPub.cshtml" />
+    <Content Include="Views\PubDeals\MyPubDeals.cshtml" />
+    <Content Include="Views\PubDeals\ManagePubs2.cshtml" />
+    <Content Include="Views\PubDeals\ManagePubs.cshtml" />
+    <Content Include="Views\PubDeals\Manage.cshtml" />
+    <Content Include="Views\PubDeals\CreateNewDeal.cshtml" />
+    <Content Include="Views\PubDeals\ThankYouPostNewDeal.cshtml" />
+    <Content Include="Views\PubDeals\SearchDeal.cshtml" />
+    <Content Include="Views\PubDeals\ShowResultsOnMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
