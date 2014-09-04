@@ -105,5 +105,11 @@ namespace UsingGoogleMaps2.Models
        {
            throw new NotImplementedException();
        }
+
+
+       public void CreateDealWithImage(TemporayDeal deal)
+       {
+           throw new NotImplementedException();
+       }
     }
 }

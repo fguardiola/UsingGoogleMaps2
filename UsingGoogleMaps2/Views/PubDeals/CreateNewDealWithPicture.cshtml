@@ -1,0 +1,105 @@
+﻿@model UsingGoogleMaps2.Models.TemporayDeal
+
+@{
+    ViewBag.Title = "CreateNewDealWithPicture";
+}
+
+<h2>Post New Deal</h2>
+
+@using (Html.BeginForm("CreateNewDealWithPicture", "PubDeals", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>TemporayDeal</legend>
+
+        <div>@Html.HiddenFor(model => model.FK_Pub, new { id = "fkPub" })</div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description, new { @cols = "80", @rows = "4" })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.PublicationDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PublicationDate)
+            @Html.ValidationMessageFor(model => model.PublicationDate)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EndDate)
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DayOfWeeK)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DayOfWeek")
+            @Html.ValidationMessageFor(model => model.DayOfWeeK)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VouchersForSale)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VouchersForSale)
+            @Html.ValidationMessageFor(model => model.VouchersForSale)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.File)
+        </div>
+        <div class="editor-field">
+           @Html.TextBoxFor(m => m.File, new { type = "file" })
+           @Html.ValidationMessageFor(m => m.File)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+@* ?????Add a way to disable the submit button during the process of uploading picture *@
+
+@section scripts {
+    <script>
+       
+        $(document).ready(function () {
+            initialize();
+        });
+
+        function initialize() {
+            var fromViewBag = '@ViewBag.PubId';
+            document.getElementById('fkPub').value =fromViewBag;
+        }
+    </script>
+}

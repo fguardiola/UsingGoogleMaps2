@@ -1,0 +1,53 @@
+﻿@model UsingGoogleMaps2.Models.SearchPreferences
+
+@{
+    ViewBag.Title = "SearchDeal";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>SearchPreferences</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Area)
+        </div>
+        <div>
+
+            @Html.DropDownList("Area")
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriceMax)
+        </div>
+        <div>
+
+            @Html.DropDownList("PriceMax")
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyType)
+        </div>
+        <div>
+
+            @Html.DropDownList("PropertyType")
+        </div>
+
+        <p>
+            <input type="submit" value="Search" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

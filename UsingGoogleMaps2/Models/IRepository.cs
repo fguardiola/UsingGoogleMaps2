@@ -16,6 +16,7 @@ namespace UsingGoogleMaps2.Models
        string UserName { get; set; }
        void RegisterPub(Pub pub);
        void CreateDeal(Deal deal);
+       void CreateDealWithImage(TemporayDeal deal);
        SearchResults SearchResults(SearchPreferences searchPreferences);
        
     }

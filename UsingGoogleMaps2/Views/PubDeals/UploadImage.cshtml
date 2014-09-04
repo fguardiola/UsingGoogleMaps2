@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "UploadImage";
+}
+
+<h2>UploadImage</h2>
+@using (Html.BeginForm())
+{
+    <label for="file">Upload Image:</label>
+    <input type="file" name="file" id="file" style="width: 100%;" />
+    @*<input type="submit" value="Upload" class="submit" />*@
+    @*<input type="submit" value="Upload" class="submit" onclick="uploadPicture()" />*@
+    <input type="button" value="Upload" onclick="uploadPicture()">
+}
+<input type="checkbox" id="checkBox" name="option1" value="Milk"> Image Uploaded <br>
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+<script>
+
+    function uploadPicture() {
+        $("#checkBox").prop("checked", data);
+
+        //$.get(url, { input: fileToUpdate}, function(data) {
+        //    $("#checkBox").prop("checked", data);
+
+        //});
+    }
+</script>
+}

@@ -195,6 +195,21 @@
     <Compile Include="Models\Company.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataModel2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModel2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModel2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel2.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\DateCustomValidation.cs" />
     <Compile Include="Models\DatModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -221,6 +236,9 @@
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FakeRepository.cs" />
+    <Compile Include="Models\Image.cs">
+      <DependentUpon>DataModel2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\Pub.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
@@ -237,6 +255,7 @@
     <Compile Include="Models\Stat.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TemporayDeal.cs" />
     <Compile Include="Models\UserProfile.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
@@ -325,6 +344,23 @@
       <DependentUpon>DatModel.edmx</DependentUpon>
       <LastGenOutput>DatModel.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\DataModel2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataModel2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DataModel2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataModel2.edmx</DependentUpon>
+      <LastGenOutput>DataModel2.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DataModel2.edmx.diagram">
+      <DependentUpon>DataModel2.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\DataModel2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataModel2.edmx</DependentUpon>
+      <LastGenOutput>DataModel2.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -393,6 +429,9 @@
     <Content Include="Views\PubDeals\ThankYouPostNewDeal.cshtml" />
     <Content Include="Views\PubDeals\SearchDeal.cshtml" />
     <Content Include="Views\PubDeals\ShowResultsOnMap.cshtml" />
+    <Content Include="Views\PubDeals\UploadImage.cshtml" />
+    <Content Include="Views\PubDeals\CreateNewDealWithPicture.cshtml" />
+    <Content Include="Views\PubDeals\PruebaBorrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

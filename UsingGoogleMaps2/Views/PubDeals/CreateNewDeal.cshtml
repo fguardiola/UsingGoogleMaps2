@@ -1,0 +1,122 @@
+﻿@model UsingGoogleMaps2.Models.Deal
+
+@{
+    ViewBag.Title = "CreateNewDeal";
+}
+
+<h2>CreateNewDeal</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Deal</legend>
+        @* with javascript we enter the pub Id in the fk field *@
+        
+        <div>@Html.HiddenFor(model => model.FK_Pub, new { id = "fkPub" })</div>
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.FK_Pub)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FK_Pub)
+            @Html.ValidationMessageFor(model => model.FK_Pub)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description, new { @cols = "80", @rows = "4" })
+            @Html.ValidationMessageFor(model => model.Description)
+          
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.PublicationDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PublicationDate)
+            @Html.ValidationMessageFor(model => model.PublicationDate)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EndDate)
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DayOfWeeK)
+        </div>
+        <div class="editor-field">
+             @Html.DropDownList("DayOfWeek")
+             @Html.ValidationMessageFor(model => model.DayOfWeeK)
+        </div>
+        @*<div>@Html.HiddenFor(model => model.Pub, new { id = "Pub" })</div>*@
+       
+        
+         @*<div class="editor-label">
+            @Html.LabelFor(model => model.VouchersForSale)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VouchersForSale)
+            @Html.ValidationMessageFor(model => model.VouchersForSale)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VouchersSold)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VouchersSold)
+            @Html.ValidationMessageFor(model => model.VouchersSold)
+        </div>*@
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+@* Access the viewbag from JS <script> var myJsVariable = '@ViewBag.MyVariable' </script> *@
+@section scripts {
+    <script>
+        var geocoder;
+        var map;
+        $(document).ready(function () {
+            initialize();
+        });
+
+        function initialize() {
+            var fromViewBag = '@ViewBag.PubId';
+            document.getElementById('fkPub').value =fromViewBag;
+            @*var fromViewBag = '@ViewBag.Pub';
+            document.getElementById('fkPub').value = fromViewBag.Id;
+            document.getElementById('Pub').value = fromViewBag;*@
+        }
+
+
+        
+    </script>
+}
