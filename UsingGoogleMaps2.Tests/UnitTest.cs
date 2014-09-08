@@ -5,14 +5,7 @@ using System.Linq;
 using UsingGoogleMaps2.Controllers;
 //using System.Data.Entity.Validation;
 
-using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DeleteUpdateItemsDb;
-using DeleteUpdateItemsDb.Models;
-using DeleteUpdateItemsDb.Controllers;
-using System.Linq;
+
 using System.Web.Mvc;
 
 
@@ -123,7 +116,7 @@ namespace UsingGoogleMaps2.Tests
             // Arrange
             PubDealsController controller = new PubDealsController();
             // Act
-            ViewResult result = controller.ThankYouUpdate() as ViewResult;
+            ViewResult result = controller.ThankYouPostNewDeal() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
@@ -132,13 +125,85 @@ namespace UsingGoogleMaps2.Tests
         public void Render_ThankYouRegisterPub_View()
         {
             // Arrange
-            JobEmergencyController controller = new JobEmergencyController();
+            PubDealsController controller = new PubDealsController();
             // Act
-            ViewResult result = controller.ThankYouUpdate() as ViewResult;
+            ViewResult result = controller.ThankYouRegisterPub() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
         }
-        
+        [TestMethod]
+        public void Render_RegiterPub_view()
+        {
+            // Arrange
+            var controller = new PubDealsController(new FakeRepository());
+
+            // Act
+            ViewResult result = controller.RegisterPub() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+        [TestMethod]
+        public void Render_ManagePubs_view()
+        {
+            // Arrange
+            var controller = new PubDealsController(new FakeRepository());
+
+            // Act
+            ViewResult result = controller.ManagePubs() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }  
+        [TestMethod]
+        public void Render_MyPubDeals_view()
+        {
+            // Arrange
+            var controller = new PubDealsController(new FakeRepository());
+
+            // Act
+            ViewResult result = controller.MyPubDeals() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+         [TestMethod]
+        public void Render_EnterLatLongDUblinCoordinatesTables_view()
+        {
+            // Arrange
+            var controller = new PubDealsController(new FakeRepository());
+
+            // Act
+            ViewResult result = controller.EnterLatLongDUblinCoordinatesTable() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }  
+         [TestMethod]
+        public void Render_SearchDeal_View()
+        {
+            // Arrange
+            var controller = new PubDealsController(new FakeRepository());
+
+            // Act
+            ViewResult result = controller.SearchDeal() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }   
+        [TestMethod]
+        public void Render_ShowResultsOnMap_View()
+        {
+            // Arrange
+            var controller = new PubDealsController(new FakeRepository());
+
+            // Act
+            var result = controller.ShowResultsOnMap()  as ViewResult;
+            //ViewResult result = controller.ShowResultsOnMap() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }

@@ -38,7 +38,9 @@ namespace UsingGoogleMaps2.Controllers
        [Authorize]
         public ActionResult RegisterPub()
         {
-           _repository.UserName= User.Identity.Name;/*Comment for testing with fakerepository*/ 
+            
+           if(_repository.UserName!="For testing")
+            _repository.UserName= User.Identity.Name; 
             ViewBag.Area = new SelectList(SearchPreferences.Areas);
             ViewBag.Category = new SelectList(SearchPreferences.PropertyTypes);
             return View();
@@ -51,14 +53,15 @@ namespace UsingGoogleMaps2.Controllers
          
             if (ModelState.IsValid)
                 {
-                    _repository.UserName = User.Identity.Name;/*Comment for testing*/
+                    if (_repository.UserName != "For testing")
+                    _repository.UserName = User.Identity.Name;
                     _repository.RegisterPub(pub);
 
                     return RedirectToAction("ThankYouRegisterPub", "PubDeals");
 
                 }
-
-            _repository.UserName = User.Identity.Name;/*Comment for testing with fakerepository*/
+            if (_repository.UserName != "For testing")
+            _repository.UserName = User.Identity.Name;
             ViewBag.Area = new SelectList(SearchPreferences.Areas);
             ViewBag.Category = new SelectList(SearchPreferences.PropertyTypes);
             
@@ -85,6 +88,7 @@ namespace UsingGoogleMaps2.Controllers
          [Authorize]
         public ActionResult ManagePubs()// list myPubs to select one to interapt with
         {
+            if (_repository.UserName != "For testing")
              _repository.UserName = User.Identity.Name;/*Comment for testing with fakerepository*/
 
             var myPubs = _repository.ListMyPubs();
@@ -185,23 +189,28 @@ namespace UsingGoogleMaps2.Controllers
         {
             //object results = TempData["results"];
             //SearchResults resultBack = (SearchResults)results;
-            object results = Session["PubsToShowOnMap"];
-            SearchResults resultBack =(SearchResults)Session["PubsToShowOnMap"];
-            List<SearchResult> list = resultBack.GetSearchListSearchResult;
-            return View(list);
+            if (_repository.UserName != "For testing")
+            {
+                object results = Session["PubsToShowOnMap"];
+                SearchResults resultBack = (SearchResults)Session["PubsToShowOnMap"];
+                List<SearchResult> list = resultBack.GetSearchListSearchResult;
+                return View(list);
+            }
+            else return View(new List<SearchResult>());
         }
 
        
-        public ActionResult UpdatePubInformation()
-        {
+        //public ActionResult UpdatePubInformation()
+        //{
 
-            return View();
-        }
+        //    return View();
+        //}
 
 
         [Authorize]
         public ActionResult EnterLatLongDUblinCoordinatesTable()
         {
+            if (_repository.UserName != "For testing")
             _repository.UserName = User.Identity.Name;/*Comment for testing with fakerepository*/
             ViewBag.Area = new SelectList(SearchPreferences.Areas);
             
@@ -215,13 +224,14 @@ namespace UsingGoogleMaps2.Controllers
            
             if (ModelState.IsValid)
             {
+                if (_repository.UserName != "For testing")
                 _repository.UserName = User.Identity.Name;/*Comment for testing*/
                 _repository.EnterDublinAreaCoordinates(areaCoordinates);
 
                 return RedirectToAction("ThankYouRegisterPub", "PubDeals");
 
             }
-
+            if (_repository.UserName != "For testing")
             _repository.UserName = User.Identity.Name;/*Comment for testing with fakerepository*/
             ViewBag.Area = new SelectList(SearchPreferences.Areas);
 

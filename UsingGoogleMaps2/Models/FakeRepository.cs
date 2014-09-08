@@ -20,7 +20,7 @@ namespace UsingGoogleMaps2.Models
 {
    public class FakeRepository:IRepository
     {
-       public string UserName { get; set; }
+       public string UserName  { get{return "For testing"; } set{ } }
        const string userName = "Fernando's company";
 
 
