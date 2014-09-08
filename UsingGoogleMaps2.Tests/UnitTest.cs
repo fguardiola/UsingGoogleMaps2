@@ -2,7 +2,19 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UsingGoogleMaps2.Models;
 using System.Linq;
+using UsingGoogleMaps2.Controllers;
 //using System.Data.Entity.Validation;
+
+using System;
+using System.Text;
+using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DeleteUpdateItemsDb;
+using DeleteUpdateItemsDb.Models;
+using DeleteUpdateItemsDb.Controllers;
+using System.Linq;
+using System.Web.Mvc;
+
 
 namespace UsingGoogleMaps2.Tests
 {
@@ -105,5 +117,28 @@ namespace UsingGoogleMaps2.Tests
 
         }
 
+        [TestMethod]
+        public void Render_ThankYouPostNewDeal_View()
+        {
+            // Arrange
+            PubDealsController controller = new PubDealsController();
+            // Act
+            ViewResult result = controller.ThankYouUpdate() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+        [TestMethod]
+        public void Render_ThankYouRegisterPub_View()
+        {
+            // Arrange
+            JobEmergencyController controller = new JobEmergencyController();
+            // Act
+            ViewResult result = controller.ThankYouUpdate() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+        
     }
 }
