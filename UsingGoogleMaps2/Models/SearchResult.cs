@@ -26,6 +26,7 @@ namespace UsingGoogleMaps2.Models
             {
                 var base64 = Convert.ToBase64String(DealImage);
                 var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                //string str = "\"How to add doublequotes\""
                 imgString = "<style>IMG.MaxSized {max-width: 100px;max-height: 100px</style><div><img class=\"MaxSized\" src=\"" + imgSrc + "\" /></div>";
             }
             

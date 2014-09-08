@@ -15,9 +15,10 @@ namespace UsingGoogleMaps2.Models
        int GetCompanyId(string companyName);
        string UserName { get; set; }
        void RegisterPub(Pub pub);
-       void CreateDeal(Deal deal);
+       //void CreateDeal(Deal deal);
        void CreateDealWithImage(TemporayDeal deal);
        SearchResults SearchResults(SearchPreferences searchPreferences);
+         void EnterDublinAreaCoordinates(DublinAreasCoordinate areaCoordinates);
        
     }
 }

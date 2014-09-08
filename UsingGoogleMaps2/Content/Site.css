@@ -477,6 +477,7 @@ textarea {
     input[type="submit"],
     input[type="button"],
     button {
+        
         background-color: #d3dce0;
         border: 1px solid #787878;
         cursor: pointer;
@@ -493,6 +494,7 @@ textarea {
         font-size: 1em;
         padding: 4px;
         margin-right: 4px;
+        background-color: red;
     }
 
 /* info and errors */
@@ -778,4 +780,13 @@ tr.pager td {
         footer p {
             margin: 0;
         }
+}
+
+
+
+
+#submit_button:disabled{
+    color: whitesmoke ;
+    /*background-color: darkgray;*/
+    background: #dddddd;
 }

@@ -30,6 +30,21 @@ namespace UsingGoogleMaps2.Models
 
         public void RegisterPub(Pub pub)
         {
+            //calculate distance from pub to the area's centre
+            var areaCentre=db.DublinAreasCoordinates.FirstOrDefault(ent=>ent.Area==pub.Area);
+            //careful with format=> stored like a string= "(lat,long)"
+            var LatLongAreaCentre=areaCentre.LatLng;
+            //take lat long from string
+            char[] delimiterChars = {',','(',')' };
+            string[] LatLongAreaCentreSplit = LatLongAreaCentre.Split(delimiterChars);
+            double latCentre = Convert.ToDouble(LatLongAreaCentreSplit[1]);
+            double longCentre =Convert.ToDouble( LatLongAreaCentreSplit[2]);
+            string[] LatLongPubSplit = pub.LatLng.Split(delimiterChars);
+            double latPub = Convert.ToDouble(LatLongPubSplit[1]);
+            double longPub = Convert.ToDouble(LatLongPubSplit[2]);
+            //calculate distance from pub to the area's centre
+            var distance = DistanceAlgorithm.DistanceBetweenPlaces(longPub, latPub, longCentre, latCentre);
+            pub.DistanceTillAreaCenter = distance;
             Company company = db.Companies.FirstOrDefault(comp => comp.Name == UserName);
             pub.FK_Company = GetCompanyId(UserName);
             pub.Company = company;
@@ -49,27 +64,26 @@ namespace UsingGoogleMaps2.Models
             Pub pub = db.Pubs.Find(id);
             return pub;
         }
-        public void CreateDeal(Deal deal)
-        {
-            Pub pub = db.Pubs.FirstOrDefault(pb => pb.Id == deal.FK_Pub);
-            deal.Pub = pub;
-            deal.PublicationDate = DateTime.Now;
-            db.Deals.Add(deal);
-            db.SaveChanges();
-        }
+        //public void CreateDeal(Deal deal)
+        //{
+        //    Pub pub = db.Pubs.FirstOrDefault(pb => pb.Id == deal.FK_Pub);
+        //    deal.Pub = pub;
+        //    deal.PublicationDate = DateTime.Now;
+        //    db.Deals.Add(deal);
+        //    db.SaveChanges();
+        //}
 
         // Search in db deals that match the user preferences and create list of objects with necesary info to show on map the pub's with deals and deals's info
         public SearchResults SearchResults(SearchPreferences searchPreferences)
         {
-            //var pubsArea = db.Pubs.Where(pub => pub.Area == searchPreferences.Area);
-            //var pubsIds=pubsArea.Select(pub=>pub.Id);
+            
             //Search algorithm
             var priceDecimal = SearchPreferences.PriceMaxToDecimal(searchPreferences.PriceMax);
             var DealsArea = db.Deals.Where(deal => deal.Pub.Area == searchPreferences.Area);
             var DealsAreaPrice = DealsArea.Where(deal => deal.Price <= priceDecimal);
             var DealsAreaPriceTime = DealsAreaPrice.Where(deal => deal.EndDate >= DateTime.Now);
            
-            //.Where(deal=>deal.Price<=priceDecimal).Where(deal=>deal.EndDate<=DateTime.Now);
+          
 
             SearchResults searchresults = new SearchResults();
             foreach (var deal in DealsAreaPriceTime)
@@ -191,6 +205,13 @@ namespace UsingGoogleMaps2.Models
 
 
 
+        }
+
+
+        public void EnterDublinAreaCoordinates(DublinAreasCoordinate areaCoordinates)
+        {
+            db.DublinAreasCoordinates.Add(areaCoordinates);
+            db.SaveChanges();
         }
     }
 }

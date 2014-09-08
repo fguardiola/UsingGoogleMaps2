@@ -22,6 +22,7 @@ namespace UsingGoogleMaps2.Models
     
         public int Id { get; set; }
         public int FK_Company { get; set; }
+        //[Required(ErrorMessage = "*")]
         [Required]
         [StringLength(128, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
         public string Name { get; set; }

@@ -45,12 +45,10 @@ namespace UsingGoogleMaps2.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult RegisterPub(Pub pub)
         {
-            var latLng = pub.LatLng;
-              
-            
-            
+         
             if (ModelState.IsValid)
                 {
                     _repository.UserName = User.Identity.Name;/*Comment for testing*/
@@ -60,8 +58,12 @@ namespace UsingGoogleMaps2.Controllers
 
                 }
 
-               
-                return View();
+            _repository.UserName = User.Identity.Name;/*Comment for testing with fakerepository*/
+            ViewBag.Area = new SelectList(SearchPreferences.Areas);
+            ViewBag.Category = new SelectList(SearchPreferences.PropertyTypes);
+            
+            
+                return View(pub);
             }
 
         public ActionResult ThankYouRegisterPub()
@@ -104,29 +106,31 @@ namespace UsingGoogleMaps2.Controllers
              return View();
          }
 
-         public ActionResult CreateNewDeal(int id=0)
-         {
-             ViewBag.DayOfWeeK = new SelectList(SearchPreferences.DayOfWeek);
-             ViewBag.PubId =id;
+         //public ActionResult CreateNewDeal(int id=0)
+         //{
+         //    ViewBag.DayOfWeeK = new SelectList(SearchPreferences.DayOfWeek);
+         //    ViewBag.PubId =id;
              
-             return View();
-         }
-         [HttpPost]
-         public ActionResult CreateNewDeal(Deal deal)
-         {
+         //    return View();
+         //}
+         //[HttpPost]
+         //[ValidateAntiForgeryToken]
+         //public ActionResult CreateNewDeal(Deal deal)
+         //{
              
-            if (ModelState.IsValid)
-             {
-                 //_repository.UserName = User.Identity.Name;/*Comment for testing*/
-                 _repository.CreateDeal(deal);
+         //   if (ModelState.IsValid)
+         //    {
+         //        //_repository.UserName = User.Identity.Name;/*Comment for testing*/
+         //        _repository.CreateDeal(deal);
 
-                 return RedirectToAction("ThankYouPostNewDeal", "PubDeals");
+         //        return RedirectToAction("ThankYouPostNewDeal", "PubDeals");
 
-             }
+         //    }
+           
+         //   ViewBag.DayOfWeeK = new SelectList(SearchPreferences.DayOfWeek);
 
-
-             return View();
-         }
+         //   return View(deal);
+         //}
          public ActionResult CreateNewDealWithPicture(int id = 0)
          {
              ViewBag.DayOfWeeK = new SelectList(SearchPreferences.DayOfWeek);
@@ -134,6 +138,7 @@ namespace UsingGoogleMaps2.Controllers
              return View();
          }
          [HttpPost]
+         [ValidateAntiForgeryToken]
          public ActionResult CreateNewDealWithPicture(TemporayDeal deal)
          {
 
@@ -146,7 +151,7 @@ namespace UsingGoogleMaps2.Controllers
 
              }
 
-
+             ViewBag.DayOfWeeK = new SelectList(SearchPreferences.DayOfWeek);
              return View(deal);
          }
          public ActionResult SearchDeal()
@@ -156,7 +161,8 @@ namespace UsingGoogleMaps2.Controllers
              ViewBag.PriceMax = new SelectList(SearchPreferences.MaxPrices);
              return View();
          }
-        [HttpPost] 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SearchDeal(SearchPreferences searchPreferences)
          {
              if (ModelState.IsValid)
@@ -192,19 +198,38 @@ namespace UsingGoogleMaps2.Controllers
             return View();
         }
 
+
+        [Authorize]
+        public ActionResult EnterLatLongDUblinCoordinatesTable()
+        {
+            _repository.UserName = User.Identity.Name;/*Comment for testing with fakerepository*/
+            ViewBag.Area = new SelectList(SearchPreferences.Areas);
+            
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnterLatLongDUblinCoordinatesTable(DublinAreasCoordinate areaCoordinates)
+        {
+           
+            if (ModelState.IsValid)
+            {
+                _repository.UserName = User.Identity.Name;/*Comment for testing*/
+                _repository.EnterDublinAreaCoordinates(areaCoordinates);
+
+                return RedirectToAction("ThankYouRegisterPub", "PubDeals");
+
+            }
+
+            _repository.UserName = User.Identity.Name;/*Comment for testing with fakerepository*/
+            ViewBag.Area = new SelectList(SearchPreferences.Areas);
+
+            return View(areaCoordinates);
+        }
+
      
-        //
-        // GET: /Maps/
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult UploadImage()
-        {
-            return View();
-        }
-
+      
     }
 }

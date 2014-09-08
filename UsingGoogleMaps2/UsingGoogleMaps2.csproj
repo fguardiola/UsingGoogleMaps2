@@ -191,7 +191,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\AreaToSearsh.cs" />
+    <Compile Include="Models\AreaCoordinatesEntity.cs" />
     <Compile Include="Models\Company.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
@@ -232,6 +232,7 @@
     <Compile Include="Models\DealEEVA.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DistanceAlgorithm.cs" />
     <Compile Include="Models\DublinAreasCoordinate.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
@@ -247,7 +248,6 @@
     <Compile Include="Models\PubEEVA.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PubTest.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\SearchPreferences.cs" />
     <Compile Include="Models\SearchResult.cs" />
@@ -375,6 +375,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\Maps.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -414,11 +415,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\PubDeals\ShowPubsOnMap.cshtml" />
-    <Content Include="Views\PubDeals\ShowAllPubsOnMap.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\PubDeals\SearchDealNOOO.cshtml" />
-    <Content Include="Views\PubDeals\SHowaddress.cshtml" />
     <Content Include="Views\PubDeals\RegisterPub.cshtml" />
     <Content Include="Views\PubDeals\ThankYouRegisterPub.cshtml" />
     <Content Include="Views\PubDeals\MyPubDeals.cshtml" />
@@ -429,9 +426,8 @@
     <Content Include="Views\PubDeals\ThankYouPostNewDeal.cshtml" />
     <Content Include="Views\PubDeals\SearchDeal.cshtml" />
     <Content Include="Views\PubDeals\ShowResultsOnMap.cshtml" />
-    <Content Include="Views\PubDeals\UploadImage.cshtml" />
     <Content Include="Views\PubDeals\CreateNewDealWithPicture.cshtml" />
-    <Content Include="Views\PubDeals\PruebaBorrar.cshtml" />
+    <Content Include="Views\PubDeals\EnterLatLongDUblinCoordinatesTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

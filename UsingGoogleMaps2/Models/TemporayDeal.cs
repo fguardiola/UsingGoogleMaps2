@@ -11,11 +11,15 @@ namespace UsingGoogleMaps2.Models
     {
         [Display(Name = "Image to upload")]
         public HttpPostedFileBase File { get; set; }
+        [Required]
+        
         public int FK_Pub { get; set; }
+        
         [Display(Name = "Description")]
+        [Required]
         public string Description { get; set; }
         [Display(Name = "Price")]
-        
+        [Required]
         public decimal Price { get; set; }
 
         public System.DateTime PublicationDate { get; set; }

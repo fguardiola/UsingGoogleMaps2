@@ -15,21 +15,7 @@ namespace UsingGoogleMaps2.Controllers
 
             return View();
         }
-        [HttpPost]
-        public ActionResult Index(AreaToSearsh arreaToSearch)
-        {
-             if (ModelState.IsValid)
-            {
-
-
-                return RedirectToAction("ShowPubsOnMap", "Maps", arreaToSearch);
-
-            }
-
-           
-            return View();
-        }
-
+       
         
 
         public ActionResult About()
