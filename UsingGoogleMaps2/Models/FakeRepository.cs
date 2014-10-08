@@ -1,19 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.IO;
-using System.Data.Entity.Validation;
 
 
 namespace UsingGoogleMaps2.Models
@@ -168,5 +156,22 @@ namespace UsingGoogleMaps2.Models
        //        throw new NotImplementedException();
        //    }
        //}
+
+
+         public DealDetails Details(int id = 0)
+         {
+             throw new System.NotImplementedException();
+         }
+
+
+         public byte[] GetImageIfExistBinaryFormat(int dealId)
+         {
+             throw new System.NotImplementedException();
+         }
+
+
+       
+
+     
     }
 }

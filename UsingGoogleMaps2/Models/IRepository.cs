@@ -18,7 +18,13 @@ namespace UsingGoogleMaps2.Models
        //void CreateDeal(Deal deal);
        void CreateDealWithImage(TemporayDeal deal);
        SearchResults SearchResults(SearchPreferences searchPreferences);
-         void EnterDublinAreaCoordinates(DublinAreasCoordinate areaCoordinates);
+       void EnterDublinAreaCoordinates(DublinAreasCoordinate areaCoordinates);
+       DealDetails Details(int id = 0);
+      
+
+       byte[] GetImageIfExistBinaryFormat(int dealId);
+
+     
        
     }
 }

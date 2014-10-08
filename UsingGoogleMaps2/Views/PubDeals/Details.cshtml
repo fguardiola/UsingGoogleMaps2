@@ -1,0 +1,125 @@
+﻿@model UsingGoogleMaps2.Models.DealDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    imageClass {
+        max-width: 200px;
+        max-height: 200px;
+       
+    }
+    .purchase p {
+        font-family: "Brush Script MT", cursive;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .imageDiv {
+        max-width: 50%;
+        position: absolute;
+        margin-left: 50%;
+        top: 0px;
+    }
+
+    .main
+    {
+        position: relative;
+        max-width: 50%;
+        
+        
+        
+    }
+    #parent {
+        position: relative;
+    }
+
+
+</style>
+@section scripts {
+    <section class="scripts">
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                initialize();
+            });
+            var initialize= function() {
+              
+                
+                var dealDetails = @Html.Raw(Json.Encode(Model));
+                
+                var image=dealDetails.DealImage;
+                var stringImage=dealDetails.StringImage;
+           
+                console.log(dealDetails);
+                console.log(image);
+              
+                if(image!==null)
+                {
+                    
+                    var img = document.createElement("img");
+                   
+                    console.log(dealDetails);
+                    img.src =stringImage;
+                    img.className="imageClass";
+                    var src = document.getElementById("image");
+                   
+                    src.appendChild(img);
+                }
+            };
+        </script>
+
+    </section>
+}
+<h2>Details</h2>
+
+<fieldset id="parent">
+    <legend>DealDetails</legend>
+    
+       
+
+    <div class="main">
+        <div class="display-label">
+            <b> @Html.DisplayName("Pub's name")</b>
+    </div>
+    <div class="display-field">
+       @Html.DisplayFor(model => model.PubName)
+    </div>
+
+    <div class="display-label">
+        <b> @Html.DisplayName("Address")</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PubAddress)
+    </div>
+
+    <div class="display-label">
+        <b> @Html.DisplayName("Description")</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+        <b> @Html.DisplayName("Publication Date")</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PublicationDate)
+    </div>
+
+    <div class="display-label">
+        <b> @Html.DisplayName("Valid Until")</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+        <div class="purchase">
+            <p>@Html.ActionLink("Proceed Purchase", "Purchase", new { id = Model.DealId }) </p> 
+    </div>
+ </div>
+    <div class="imageDiv" id="image"></div>
+</fieldset>
+
+

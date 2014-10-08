@@ -238,7 +238,30 @@ namespace UsingGoogleMaps2.Controllers
             return View(areaCoordinates);
         }
 
-     
+        //public ActionResult Details(int id = 0)
+        //{
+
+        //    DealDetails dealDetails = _repository.Details(id);
+
+        //    if (dealDetails == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    return View(dealDetails);
+        //}
+        public ActionResult Details(int id=0)
+        {
+
+            DealDetails dealDetails = _repository.Details(id);
+
+            //if (dealDetails == null)
+            //{
+            //    return HttpNotFound();
+            //}
+
+            return View(dealDetails);
+        }
 
       
     }

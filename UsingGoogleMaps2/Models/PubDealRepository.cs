@@ -90,22 +90,19 @@ namespace UsingGoogleMaps2.Models
             {
                 
                 SearchResult searchResult = new SearchResult();
-                //looking for related EEVAs
-                var RelatedEEVAs = db.DealEEVAs.Where(eeva=>eeva.FK_Deal==deal.Id);
-                //look for DealImage if esxist
-                var imageEEVA = RelatedEEVAs.FirstOrDefault(eeva => eeva.Attribute == "DealImage");
-                if (imageEEVA != null) 
-                {
-                    string imageName = imageEEVA.Value; //tke name if exists the image
-                    var image = db2.Images.FirstOrDefault(img=>img.Name==imageName);
-                    if (image != null) searchResult.DealImage = image.BinaryImage;
-                }
+
+                var image = GetImageIfExistBinaryFormat(deal.Id);
+                if (image != null) searchResult.DealImage = image;
+               
                 searchResult.PubAddress = deal.Pub.Address;
                 searchResult.PubName = deal.Pub.Name;
                 searchResult.Description = deal.Description;
                 searchResult.LatLng = deal.Pub.LatLng;
+                // to pass to deatils view
+                searchResult.DealId = deal.Id;
                 //set content string for google maps api
-                searchResult.SetContentString(); 
+                searchResult.SetContentString();
+              
                 // Add deal data to list of results
                  searchresults.AddResult(searchResult);
             }
@@ -182,7 +179,7 @@ namespace UsingGoogleMaps2.Models
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-                var x=3;
+                var x=3;//??
                 throw;
             }
             
@@ -213,5 +210,68 @@ namespace UsingGoogleMaps2.Models
             db.DublinAreasCoordinates.Add(areaCoordinates);
             db.SaveChanges();
         }
+
+
+        
+        public DealDetails Details(int id = 0)
+        {
+            DealDetails dealDetails = new DealDetails();
+            Deal deal = db.Deals.FirstOrDefault(d => d.Id == id);
+
+            Pub pub = db.Pubs.FirstOrDefault(p => p.Id == deal.FK_Pub);
+            Company company = db.Companies.FirstOrDefault(c => c.Id == pub.FK_Company);
+            //look for image related
+            byte[] image = GetImageIfExistBinaryFormat(id);
+            // set dealDetails properties
+            if (image != null) 
+            {
+                dealDetails.DealImage = image;
+                var base64 = Convert.ToBase64String(image);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                dealDetails.StringImage = imgSrc;
+            }
+
+            dealDetails.DealId = deal.Id;
+            dealDetails.Description = deal.Description;
+            dealDetails.EndDate = deal.EndDate;
+            dealDetails.PubAddress = pub.Address;
+            dealDetails.PublicationDate = deal.PublicationDate;
+            dealDetails.PubName = company.Name;
+
+            return dealDetails;
+        }
+
+        public byte[] GetImageIfExistBinaryFormat(int dealId)
+        {
+            byte[] binaryImage = null;    
+        //looking for related EEVAs
+            var RelatedEEVAs = db.DealEEVAs.Where(eeva => eeva.FK_Deal == dealId);
+            //look for DealImage if esxist
+            var imageEEVA = RelatedEEVAs.FirstOrDefault(eeva => eeva.Attribute == "DealImage");
+            if (imageEEVA != null)
+            {
+                string imageName = imageEEVA.Value; //take name if exists the image
+                var image = db2.Images.FirstOrDefault(img => img.Name == imageName);
+                if (image != null)
+                {
+                    binaryImage = image.BinaryImage;
+                    var base64 = Convert.ToBase64String(binaryImage);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                }
+            }
+
+
+            
+            return binaryImage;
+                
+               
+        }
+    
+
+    
+
+
+   
     }
 }

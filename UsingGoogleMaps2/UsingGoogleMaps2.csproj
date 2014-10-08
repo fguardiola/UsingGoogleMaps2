@@ -229,6 +229,7 @@
     <Compile Include="Models\Deal.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DealDetails.cs" />
     <Compile Include="Models\DealEEVA.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
@@ -377,6 +378,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\Maps.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ShowResultsOnMap.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -428,6 +430,7 @@
     <Content Include="Views\PubDeals\ShowResultsOnMap.cshtml" />
     <Content Include="Views\PubDeals\CreateNewDealWithPicture.cshtml" />
     <Content Include="Views\PubDeals\EnterLatLongDUblinCoordinatesTable.cshtml" />
+    <Content Include="Views\PubDeals\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

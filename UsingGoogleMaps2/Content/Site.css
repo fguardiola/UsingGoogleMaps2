@@ -204,34 +204,7 @@ ul#menu {
             text-decoration: none;
         }
 
-/* menu2
-----------------------------------------------------------*/
-ul#menu2 {
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0 0 5px;
-    padding: 0;
-    text-align: right;
-}
 
-    ul#menu2 li {
-        /*display: inline;*/
-        display: block;
-        list-style: none;
-        padding-left: 15px;
-    }
-
-        ul#menu2 li a {
-            background: none;
-            color: #999;
-            text-decoration: none;
-        }
-
-            ul#menu2 li a:hover {
-                color: #333;
-                text-decoration: none;
-            }
-/*----------------------------------------------------------*/
 /* featured */
 .featured {
     background-color: #fff;
@@ -790,3 +763,70 @@ tr.pager td {
     /*background-color: darkgray;*/
     background: #dddddd;
 }
+
+
+ .tableCustom {
+        width:48%;
+        max-width: 50%;
+        max-height: 50%;
+       
+        float: left;
+        
+    }
+  .regiterPubForm {
+        width:48%;
+        max-width: 50%;
+        max-height: 50%;
+       
+        float: left;
+        
+    }
+ 
+  /********************************************* MAPS ***********************************************************/
+   .map {
+        max-width:50%;
+        max-height:50%;
+        /*left:50%;*/
+        float:left;
+        border:3px solid black;
+       
+    }
+   /**This css is to give a nice big popup "info window" when a marker is clicked on the map*/
+  .infoDiv {
+        height: 200px;
+        width: 300px;
+        -webkit-user-select: none;
+        background-color: white;
+    }
+  #map_canvas img {
+        max-width: none;
+    }
+
+  /* menu2
+----------------------------------------------------------*/
+ul#menu2 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0 0 5px;
+    padding: 0;
+    text-align: left;
+}
+
+    ul#menu2 li {
+        /*display: inline;*/
+        display: block;
+        list-style: none;
+        padding-left: 15px;
+    }
+
+        ul#menu2 li a {
+            background: none;
+            color: #999;
+            text-decoration: none;
+        }
+
+            ul#menu2 li a:hover {
+                color: #333;
+                text-decoration: none;
+            }
+/*----------------------------------------------------------*/

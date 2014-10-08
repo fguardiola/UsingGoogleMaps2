@@ -13,6 +13,8 @@ namespace UsingGoogleMaps2.Models
         public byte[] DealImage { get; set; }
         public string Description { get; set; }
         public string LatLng { get; set; }
+        //Deal id to pass to details view
+        public int DealId{get; set; }
 
         public void SetContentString ()
         {
@@ -20,8 +22,9 @@ namespace UsingGoogleMaps2.Models
             string pubNameString="";
             string pubAddressString="";
             string descriptionString="";
+            string linkToDeatils = "<a href=\"/PubDeals/Details/" + DealId + "\">Details</a>";
            
-
+           
             if (DealImage!=null)
             {
                 var base64 = Convert.ToBase64String(DealImage);
@@ -43,8 +46,9 @@ namespace UsingGoogleMaps2.Models
             {
                 descriptionString = "<h5>" + Description + "</h5>";
             }
+
             
-            InfoWindowContentString=imgString + "<div>" + pubNameString + pubAddressString + descriptionString + "</div>";
+            InfoWindowContentString=imgString + "<div>" + pubNameString + pubAddressString + descriptionString +linkToDeatils+ "</div>";
             
         }
 
