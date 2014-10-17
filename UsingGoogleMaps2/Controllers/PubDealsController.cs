@@ -263,6 +263,20 @@ namespace UsingGoogleMaps2.Controllers
             return View(dealDetails);
         }
 
+
+        public ActionResult ManageDeals(int id=0)
+        {
+
+           var lastDeals=_repository.ManageDeals(id);
+
+            //if (dealDetails == null)
+            //{
+            //    return HttpNotFound();
+            //}
+
+           return View(lastDeals);
+        }
+
       
     }
 }

@@ -6,7 +6,7 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.ComponentModel.DataAnnotations;
+
 namespace UsingGoogleMaps2.Models
 {
     using System;
@@ -22,23 +22,11 @@ namespace UsingGoogleMaps2.Models
     
         public int Id { get; set; }
         public int FK_Pub { get; set; }
-        [Display(Name = "Description")]
         public string Description { get; set; }
-       [Display(Name = "Price")]
         public decimal Price { get; set; }
-        
         public System.DateTime PublicationDate { get; set; }
-        [Required]
-        [DateCustomValidation(ErrorMessage = "Date selected must be on or after today")]//Custom validation
-        [DataType(DataType.Date)]
-        [Display(Name = "Valid from")]
         public System.DateTime StartDate { get; set; }
-        [Required]
-        [DateCustomValidation(ErrorMessage = "Date selected must be on or after today")]//Custom validation
-        [DataType(DataType.Date)]
-        [Display(Name = "Valid Until")]
         public System.DateTime EndDate { get; set; }
-        [Display(Name = "Day of the week")]
         public string DayOfWeeK { get; set; }
         public int VouchersForSale { get; set; }
         public int VouchersSold { get; set; }

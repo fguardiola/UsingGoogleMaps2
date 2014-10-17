@@ -23,7 +23,7 @@ namespace UsingGoogleMaps2.Models
       
 
        byte[] GetImageIfExistBinaryFormat(int dealId);
-
+       IEnumerable<Deal> ManageDeals(int pubId);
      
        
     }

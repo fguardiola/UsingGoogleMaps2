@@ -133,13 +133,18 @@ footer {
     font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
     font-size: 2.3em;
     margin: 0;
+   
 }
 
 .site-title a, .site-title a:hover, .site-title a:active {
-    background: none;
+    /*background: none;*/
     color: #c8c8c8;
     outline: none;
     text-decoration: none;
+    background: url(/Content/images/logo_solo.png) no-repeat ;
+    background-position: center;
+    background-size:200px;
+        
 }
 
 

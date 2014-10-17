@@ -267,11 +267,12 @@ namespace UsingGoogleMaps2.Models
                 
                
         }
-    
-
-    
 
 
-   
+        public System.Collections.Generic.IEnumerable<Deal> ManageDeals(int pubId)
+        {
+            var myDeals = db.Deals.Where(d=>d.FK_Pub==pubId);
+            return myDeals.OrderByDescending(entries => entries.PublicationDate).Take(20).ToList();//20 last  entries of the database sorted by DateAdded*/
+        }
     }
 }

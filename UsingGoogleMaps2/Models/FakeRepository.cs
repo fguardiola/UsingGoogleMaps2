@@ -170,8 +170,14 @@ namespace UsingGoogleMaps2.Models
          }
 
 
-       
 
-     
+
+
+
+
+         public IEnumerable<Deal> ManageDeals(int pubId)
+         {
+             throw new NotImplementedException();
+         }
     }
 }
