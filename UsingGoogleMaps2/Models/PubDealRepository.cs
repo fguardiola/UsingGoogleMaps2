@@ -82,13 +82,12 @@ namespace UsingGoogleMaps2.Models
             var DealsArea = db.Deals.Where(deal => deal.Pub.Area == searchPreferences.Area);
             var DealsAreaPrice = DealsArea.Where(deal => deal.Price <= priceDecimal);
             var DealsAreaPriceTime = DealsAreaPrice.Where(deal => deal.EndDate >= DateTime.Now);
-           
           
-
             SearchResults searchresults = new SearchResults();
             foreach (var deal in DealsAreaPriceTime)
             {
-                
+                //Vouchers left?
+                if((deal.VouchersForSale-deal.VouchersSold>=1)){
                 SearchResult searchResult = new SearchResult();
 
                 var image = GetImageIfExistBinaryFormat(deal.Id);
@@ -105,6 +104,7 @@ namespace UsingGoogleMaps2.Models
               
                 // Add deal data to list of results
                  searchresults.AddResult(searchResult);
+            }
             }
 
             return searchresults;
@@ -231,6 +231,9 @@ namespace UsingGoogleMaps2.Models
                 dealDetails.StringImage = imgSrc;
             }
 
+            dealDetails.Price = deal.Price;
+            ///////
+            
             dealDetails.DealId = deal.Id;
             dealDetails.Description = deal.Description;
             dealDetails.EndDate = deal.EndDate;

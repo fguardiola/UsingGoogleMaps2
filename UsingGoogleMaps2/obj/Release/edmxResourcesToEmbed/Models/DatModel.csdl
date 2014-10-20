@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PubDealsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactPhone" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pubs" Relationship="Self.FK_Pub_ToCompany" FromRole="Companies" ToRole="Pubs" />
+  </EntityType>
+  <EntityType Name="DealEEVA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FK_Deal" Type="Int32" Nullable="false" />
+    <Property Name="Attribute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Deal" Relationship="Self.FK_EEVA_ToDeal" FromRole="DealEEVAs" ToRole="Deals" />
+  </EntityType>
+  <EntityType Name="Deal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FK_Pub" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="PublicationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DayOfWeeK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VouchersForSale" Type="Int32" Nullable="false" />
+    <Property Name="VouchersSold" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DealEEVAs" Relationship="Self.FK_EEVA_ToDeal" FromRole="Deals" ToRole="DealEEVAs" />
+    <NavigationProperty Name="Pub" Relationship="Self.FK_Deal_ToPub" FromRole="Deals" ToRole="Pubs" />
+    <NavigationProperty Name="Stats" Relationship="Self.FK_Statics_ToDeal" FromRole="Deals" ToRole="Stats" />
+  </EntityType>
+  <EntityType Name="DublinAreasCoordinate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LatLng" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PubEEVA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FK_Pub" Type="Int32" Nullable="false" />
+    <Property Name="Attribute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pub" Relationship="Self.FK_EEVA_ToPub" FromRole="PubEEVAs" ToRole="Pubs" />
+  </EntityType>
+  <EntityType Name="Pub">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FK_Company" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LatLng" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DistanceTillAreaCenter" Type="Double" Nullable="false" />
+    <Property Name="ContactEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NegotiatedPercentage" Type="Double" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Pub_ToCompany" FromRole="Pubs" ToRole="Companies" />
+    <NavigationProperty Name="Deals" Relationship="Self.FK_Deal_ToPub" FromRole="Pubs" ToRole="Deals" />
+    <NavigationProperty Name="PubEEVAs" Relationship="Self.FK_EEVA_ToPub" FromRole="Pubs" ToRole="PubEEVAs" />
+  </EntityType>
+  <EntityType Name="Stat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FK_Deal" Type="Int32" Nullable="false" />
+    <Property Name="PricePerVoucher" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="VouchersForSale" Type="Int32" Nullable="false" />
+    <Property Name="VouchersSold" Type="Int32" Nullable="false" />
+    <Property Name="PublicationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Deal" Relationship="Self.FK_Statics_ToDeal" FromRole="Stats" ToRole="Deals" />
+  </EntityType>
+  <Association Name="FK_Pub_ToCompany">
+    <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+    <End Role="Pubs" Type="Self.Pub" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pubs">
+        <PropertyRef Name="FK_Company" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EEVA_ToDeal">
+    <End Role="Deals" Type="Self.Deal" Multiplicity="1" />
+    <End Role="DealEEVAs" Type="Self.DealEEVA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deals">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DealEEVAs">
+        <PropertyRef Name="FK_Deal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_ToPub">
+    <End Role="Pubs" Type="Self.Pub" Multiplicity="1" />
+    <End Role="Deals" Type="Self.Deal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pubs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Deals">
+        <PropertyRef Name="FK_Pub" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Statics_ToDeal">
+    <End Role="Deals" Type="Self.Deal" Multiplicity="1" />
+    <End Role="Stats" Type="Self.Stat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deals">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stats">
+        <PropertyRef Name="FK_Deal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EEVA_ToPub">
+    <End Role="Pubs" Type="Self.Pub" Multiplicity="1" />
+    <End Role="PubEEVAs" Type="Self.PubEEVA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pubs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PubEEVAs">
+        <PropertyRef Name="FK_Pub" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PubDealsDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Companies" EntityType="Self.Company" />
+    <EntitySet Name="DealEEVAs" EntityType="Self.DealEEVA" />
+    <EntitySet Name="Deals" EntityType="Self.Deal" />
+    <EntitySet Name="DublinAreasCoordinates" EntityType="Self.DublinAreasCoordinate" />
+    <EntitySet Name="PubEEVAs" EntityType="Self.PubEEVA" />
+    <EntitySet Name="Pubs" EntityType="Self.Pub" />
+    <EntitySet Name="Stats" EntityType="Self.Stat" />
+    <AssociationSet Name="FK_Pub_ToCompany" Association="Self.FK_Pub_ToCompany">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Pubs" EntitySet="Pubs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EEVA_ToDeal" Association="Self.FK_EEVA_ToDeal">
+      <End Role="Deals" EntitySet="Deals" />
+      <End Role="DealEEVAs" EntitySet="DealEEVAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_ToPub" Association="Self.FK_Deal_ToPub">
+      <End Role="Pubs" EntitySet="Pubs" />
+      <End Role="Deals" EntitySet="Deals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Statics_ToDeal" Association="Self.FK_Statics_ToDeal">
+      <End Role="Deals" EntitySet="Deals" />
+      <End Role="Stats" EntitySet="Stats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EEVA_ToPub" Association="Self.FK_EEVA_ToPub">
+      <End Role="Pubs" EntitySet="Pubs" />
+      <End Role="PubEEVAs" EntitySet="PubEEVAs" />
+    </AssociationSet>
+    <EntitySet Name="UserProfiles" EntityType="PubDealsDBModel.UserProfile" />
+    <EntitySet Name="webpages_Membership" EntityType="PubDealsDBModel.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="PubDealsDBModel.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="PubDealsDBModel.webpages_Roles" />
+    <AssociationSet Name="webpages_UsersInRoles" Association="PubDealsDBModel.webpages_UsersInRoles">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="webpages_Roles" Relationship="PubDealsDBModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserProfiles" Relationship="PubDealsDBModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+  </EntityType>
+  <Association Name="webpages_UsersInRoles">
+    <End Type="PubDealsDBModel.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
+    <End Type="PubDealsDBModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+  </Association>
+</Schema>

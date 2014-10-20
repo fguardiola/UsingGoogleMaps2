@@ -1,0 +1,67 @@
+﻿@model UsingGoogleMaps2.Models.AreaCoordinatesEntity
+
+@{
+    ViewBag.Title = "EnterLatLongDUblinCoordinatesTable";
+}
+
+<h2>Create entry in DublinCoordinate Table</h2>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_Tm0LskVQEn34c-5WTBMC4velnOZb7vQ&sensor=false"></script>
+
+<script type="text/javascript" src="/Scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="/Scripts/Maps.js"></script>
+
+<style>
+    #map_canvas img {
+        max-width: none;
+    }
+</style>
+<!-- This css is to give a nice big popup "info window" when a marker is clicked on the map -->
+<style>
+    .infoDiv {
+        height: 200px;
+        width: 300px;
+        -webkit-user-select: none;
+        background-color: white;
+    }
+</style>
+
+<br />
+<div id="map_canvas" style="height:600px ;"></div>
+<br />
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AreaCoordinatesEntity</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Area)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Area")
+            @Html.ValidationMessageFor(model => model.Area)
+        </div>
+
+        <div>@Html.HiddenFor(model => model.LatLng, new { id = "latLng" })</div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Address, new { id = "address" })<input type="button" value="Check address on map" onclick="codeAddress()">
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+       
+
+        <p>
+            <input id="submit_button" type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to Home", "Index","Home")
+</div>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="pubDeals" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Fernando\\Google\ Drive\\Final\ Project\\UsingGoogleMaps2\\UsingGoogleMaps2\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Fernando\\Google\ Drive\\Final\ Project\\UsingGoogleMaps2\\UsingGoogleMaps2\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=mh8wtwyvaa.database.windows.net,1433;Initial Catalog=PubDealsDB;User ID=fernando.guardiola.888;Password=X00115925!" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Fernando\\Google\ Drive\\Final\ Project\\UsingGoogleMaps2\\UsingGoogleMaps2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="PubDealsDBEntities-Web.config Connection String" description="" value="metadata=res://*/Models.DatModel.csdl|res://*/Models.DatModel.ssdl|res://*/Models.DatModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=mh8wtwyvaa.database.windows.net,1433;Initial Catalog=PubDealsDB;User ID=fernando.guardiola.888;Password=X00115925!&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Fernando\\Google\ Drive\\Final\ Project\\UsingGoogleMaps2\\UsingGoogleMaps2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='PubDealsDBEntities']/@connectionString" />
+  </parameter>
+  <parameter name="PubDealsImagesEntities-Web.config Connection String" description="" value="metadata=res://*/Models.DataModel2.csdl|res://*/Models.DataModel2.ssdl|res://*/Models.DataModel2.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=mh8wtwyvaa.database.windows.net,1433;Initial Catalog=PubDealsImages;User ID=fernando.guardiola.888;Password=X00115925!&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Fernando\\Google\ Drive\\Final\ Project\\UsingGoogleMaps2\\UsingGoogleMaps2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='PubDealsImagesEntities']/@connectionString" />
+  </parameter>
+  <parameter name="StorageConnectionString-Web.config Connection String" description="" value="Data Source=tcp:mh8wtwyvaa.database.windows.net,1433;Initial Catalog=PubDealsDB;User ID=fernando.guardiola.888@mh8wtwyvaa;Password=X00115925!" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Fernando\\Google\ Drive\\Final\ Project\\UsingGoogleMaps2\\UsingGoogleMaps2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='StorageConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

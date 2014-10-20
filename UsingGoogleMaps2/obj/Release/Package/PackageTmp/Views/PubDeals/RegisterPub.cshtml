@@ -1,0 +1,80 @@
+﻿@model UsingGoogleMaps2.Models.Pub
+
+@{
+    ViewBag.Title = "RegisterPub";
+}
+
+<h2>Register new Pub</h2>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_Tm0LskVQEn34c-5WTBMC4velnOZb7vQ&sensor=false"></script>
+
+<script type="text/javascript" src="/Scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="/Scripts/Maps.js"></script>
+
+
+<div class="regiterPubForm">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Pub</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Category)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("Category")
+                @Html.ValidationMessageFor(model => model.Category)
+            </div>
+
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Area)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("Area")
+                @Html.ValidationMessageFor(model => model.Area)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Address)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Address, new { id = "address" })<input type="button" value="Check address on map" onclick="codeAddress()">
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+            <div>@Html.HiddenFor(model => model.LatLng, new { id = "latLng" })</div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ContactEmail)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ContactEmail)
+                @Html.ValidationMessageFor(model => model.ContactEmail)
+            </div>
+
+            <p>
+
+                <input id="submit_button" type="submit" value=" register" />
+
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to Home", "Index", "Home")
+    </div>
+
+</div>
+<div id="map_canvas" class="map" style="height:500px;width:500px;"></div>

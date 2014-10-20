@@ -17,6 +17,7 @@ namespace UsingGoogleMaps2.Models
         public string Description { get; set; }
         public System.DateTime PublicationDate { get; set; }
         public System.DateTime EndDate { get; set; }
+        public decimal Price { get; set; }
         
 
     }
