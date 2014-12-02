@@ -76,14 +76,15 @@ namespace UsingGoogleMaps2.Models
         // Search in db deals that match the user preferences and create list of objects with necesary info to show on map the pub's with deals and deals's info
         public SearchResults SearchResults(SearchPreferences searchPreferences)
         {
-            
+            SearchResults searchresults = new SearchResults();
+
+            try {
             //Search algorithm
             var priceDecimal = SearchPreferences.PriceMaxToDecimal(searchPreferences.PriceMax);
             var DealsArea = db.Deals.Where(deal => deal.Pub.Area == searchPreferences.Area);
             var DealsAreaPrice = DealsArea.Where(deal => deal.Price <= priceDecimal);
             var DealsAreaPriceTime = DealsAreaPrice.Where(deal => deal.EndDate >= DateTime.Now);
-          
-            SearchResults searchresults = new SearchResults();
+      
             foreach (var deal in DealsAreaPriceTime)
             {
                 //Vouchers left?
@@ -106,7 +107,11 @@ namespace UsingGoogleMaps2.Models
                  searchresults.AddResult(searchResult);
             }
             }
-
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("{0} Exception caught.", e);
+            }
             return searchresults;
            
         }

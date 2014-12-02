@@ -251,6 +251,7 @@ namespace UsingGoogleMaps2.Controllers
             return View(lastDeals);
         }
 /**************************************************************PayPal manage responses***********************************************/
+        
         public ActionResult IPN()
         {
 
@@ -263,7 +264,7 @@ namespace UsingGoogleMaps2.Controllers
             formVals.Add("tx", Request["tx"]);
 
             // if you want to use the PayPal sandbox change this from false to true
-            string response = GetPayPalResponse(formVals, false);
+            string response = GetPayPalResponse(formVals, true);
 
             if (response.Contains("SUCCESS"))
             {

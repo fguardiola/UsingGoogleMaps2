@@ -40,6 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -184,7 +187,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\errorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\PubDealsController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -366,12 +371,19 @@
       <DependentUpon>DataModel2.edmx</DependentUpon>
       <LastGenOutput>DataModel2.cs</LastGenOutput>
     </Content>
-    <None Include="Properties\PublishProfiles\pubDeals - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\pubDeals - FTP %283%29.pubxml" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\demoMVCApp.pubxml" />
+    <None Include="Properties\PublishProfiles\pubDeals %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\pubDeals %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\pubDeals %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\pubDeals - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\pubDeals - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\pubDeals - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\pubDeals - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\pubDeals.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -443,6 +455,7 @@
     <Content Include="Views\PubDeals\Details.cshtml" />
     <Content Include="Views\PubDeals\ManageDeals.cshtml" />
     <Content Include="Views\PubDeals\IPN.cshtml" />
+    <Content Include="Views\PayPal\IPNPayPal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
