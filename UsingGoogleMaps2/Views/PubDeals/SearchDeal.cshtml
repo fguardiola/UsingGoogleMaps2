@@ -38,6 +38,14 @@
             @Html.DropDownList("PropertyType")
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MaxDistance)
+        </div>
+        <div>
+
+            @Html.DropDownList("MaxDistance")
+        </div>
+
         <p>
             <input type="submit" value="Search" />
         </p>

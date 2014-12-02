@@ -18,6 +18,8 @@ namespace UsingGoogleMaps2.Models
         public System.DateTime PublicationDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public decimal Price { get; set; }
+
+        
         
 
     }

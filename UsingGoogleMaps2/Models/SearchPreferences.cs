@@ -39,6 +39,16 @@ namespace UsingGoogleMaps2.Models
                         };
              }
          }
+         public static List<string> MaxDistances
+         {
+             get
+             {
+                 return new List<string>
+                        {
+                            "No max", "100 m", "200 m", "500 m", "700 m", "1000 m", "1500 m", "2000 m", "2500 m" 
+                        };
+             }
+         }
          public static List<string> DayOfWeek
          {
              get
@@ -112,10 +122,42 @@ namespace UsingGoogleMaps2.Models
                    
 	            }
         }
+         //get decimal dinstance from the string selected on the distance dropdown list
+        public static double DistanceMaxToDecimal(string distanceMax)
+        {
+          
+            switch (distanceMax)
+            {
+                case "No max":
+                    return double.MaxValue;
+                //break;
+                case "100 m":
+                    return 100;
+                case "200 m":
+                    return 200;
+                case "500 m":
+                    return 500;
+                case "700 m":
+                    return 700;
+                case "1500 m":
+                    return 1500;
+                case "2000 m":
+                    return 2000;
+                case "2500 m":
+                    return 2500;
+                default:
+                    return 0;
+
+            }
+        }
          public string Area { get; set; }
         
         public string PriceMax { get; set; }
         public string PropertyType { get; set; }
+
+        public string MaxDistance { get; set; }
+
+
 
         
     

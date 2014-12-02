@@ -179,5 +179,17 @@ namespace UsingGoogleMaps2.Models
          {
              throw new NotImplementedException();
          }
+
+
+         public DealPubOwnwerDetails DetailsPubOwners(int i = 0)
+         {
+             throw new NotImplementedException();
+         }
+
+
+         public IEnumerable<TransactionInfo> CurrentTransactions(int id)
+         {
+             throw new NotImplementedException();
+         }
     }
 }

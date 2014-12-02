@@ -200,6 +200,7 @@
     <Compile Include="Models\Company.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CurrentTransactions.cs" />
     <Compile Include="Models\DataModel2.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -238,6 +239,7 @@
     <Compile Include="Models\DealEEVA.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DealPubOwnwerDetails.cs" />
     <Compile Include="Models\DistanceAlgorithm.cs" />
     <Compile Include="Models\DublinAreasCoordinate.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
@@ -263,6 +265,7 @@
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TemporayDeal.cs" />
+    <Compile Include="Models\TransactionInfo.cs" />
     <Compile Include="Models\UserProfile.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
@@ -456,6 +459,10 @@
     <Content Include="Views\PubDeals\ManageDeals.cshtml" />
     <Content Include="Views\PubDeals\IPN.cshtml" />
     <Content Include="Views\PayPal\IPNPayPal.cshtml" />
+    <Content Include="Views\PubDeals\boorrar.cshtml" />
+    <Content Include="Views\PubDeals\DealPubOwnerDetails.cshtml" />
+    <Content Include="Views\PubDeals\CurrentTransactions.cshtml" />
+    <None Include="Views\PubDeals\CurrentTransactions2cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

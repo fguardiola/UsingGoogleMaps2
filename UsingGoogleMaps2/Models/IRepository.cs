@@ -20,11 +20,12 @@ namespace UsingGoogleMaps2.Models
        SearchResults SearchResults(SearchPreferences searchPreferences);
        void EnterDublinAreaCoordinates(DublinAreasCoordinate areaCoordinates);
        DealDetails Details(int id = 0);
-      
+       DealPubOwnwerDetails DetailsPubOwners(int i = 0);
 
        byte[] GetImageIfExistBinaryFormat(int dealId);
        IEnumerable<Deal> ManageDeals(int pubId);
-     
+       IEnumerable<TransactionInfo> CurrentTransactions(int id);
+      
        
     }
 }

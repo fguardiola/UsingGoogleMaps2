@@ -64,15 +64,7 @@ namespace UsingGoogleMaps2.Models
             Pub pub = db.Pubs.Find(id);
             return pub;
         }
-        //public void CreateDeal(Deal deal)
-        //{
-        //    Pub pub = db.Pubs.FirstOrDefault(pb => pb.Id == deal.FK_Pub);
-        //    deal.Pub = pub;
-        //    deal.PublicationDate = DateTime.Now;
-        //    db.Deals.Add(deal);
-        //    db.SaveChanges();
-        //}
-
+       
         // Search in db deals that match the user preferences and create list of objects with necesary info to show on map the pub's with deals and deals's info
         public SearchResults SearchResults(SearchPreferences searchPreferences)
         {
@@ -81,11 +73,18 @@ namespace UsingGoogleMaps2.Models
             try {
             //Search algorithm
             var priceDecimal = SearchPreferences.PriceMaxToDecimal(searchPreferences.PriceMax);
+            //Distance
+           
+            var maxDistance = SearchPreferences.DistanceMaxToDecimal(searchPreferences.MaxDistance);
             var DealsArea = db.Deals.Where(deal => deal.Pub.Area == searchPreferences.Area);
             var DealsAreaPrice = DealsArea.Where(deal => deal.Price <= priceDecimal);
-            var DealsAreaPriceTime = DealsAreaPrice.Where(deal => deal.EndDate >= DateTime.Now);
+            var DealsAreaPriceDistance = DealsAreaPrice.Where(deal => deal.Pub.DistanceTillAreaCenter <= maxDistance); 
+            var DealsAreaPriceTimeDistance = DealsAreaPrice.Where(deal => deal.EndDate >= DateTime.Now);
+            
+            
+
       
-            foreach (var deal in DealsAreaPriceTime)
+            foreach (var deal in DealsAreaPriceTimeDistance)
             {
                 //Vouchers left?
                 if((deal.VouchersForSale-deal.VouchersSold>=1)){
@@ -184,7 +183,7 @@ namespace UsingGoogleMaps2.Models
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-                var x=3;//??
+               
                 throw;
             }
             
@@ -248,6 +247,39 @@ namespace UsingGoogleMaps2.Models
 
             return dealDetails;
         }
+        DealPubOwnwerDetails IRepository.DetailsPubOwners(int id)
+        {
+            DealPubOwnwerDetails dealDetails = new DealPubOwnwerDetails();
+            Deal deal = db.Deals.FirstOrDefault(d => d.Id == id);
+
+            Pub pub = db.Pubs.FirstOrDefault(p => p.Id == deal.FK_Pub);
+            Company company = db.Companies.FirstOrDefault(c => c.Id == pub.FK_Company);
+            //look for image related
+            byte[] image = GetImageIfExistBinaryFormat(id);
+            // set dealDetails properties
+            if (image != null)
+            {
+                dealDetails.DealImage = image;
+                var base64 = Convert.ToBase64String(image);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                dealDetails.StringImage = imgSrc;
+            }
+
+            dealDetails.Price = deal.Price;
+            ///////
+
+            dealDetails.DealId = deal.Id;
+            dealDetails.Description = deal.Description;
+            dealDetails.EndDate = deal.EndDate;
+            dealDetails.PubAddress = pub.Address;
+            dealDetails.PublicationDate = deal.PublicationDate;
+            dealDetails.PubName = company.Name;
+            
+
+            return dealDetails;
+        }
+
+
 
         public byte[] GetImageIfExistBinaryFormat(int dealId)
         {
@@ -281,6 +313,30 @@ namespace UsingGoogleMaps2.Models
         {
             var myDeals = db.Deals.Where(d=>d.FK_Pub==pubId);
             return myDeals.OrderByDescending(entries => entries.PublicationDate).Take(20).ToList();//20 last  entries of the database sorted by DateAdded*/
+        }
+        public System.Collections.Generic.IEnumerable<TransactionInfo> CurrentTransactions(int id)
+        {
+            List<TransactionInfo> transactionsInfo = new List<TransactionInfo>();
+            List<DealEEVA> transactions = new List<DealEEVA>();
+            var dealEEVAs = db.DealEEVAs.Where(eeva => eeva.FK_Deal == id);
+            var dealTransactions = dealEEVAs.Where(eeva => eeva.Attribute == "Transaction");
+            foreach (var transaction in dealTransactions)
+            {
+                //if there are more DealEEVAs related with an actual transaction next functionality must be changed
+                TransactionInfo transactionInfo=new TransactionInfo();
+                transactionInfo.DealId = transaction.FK_Deal;
+                transactionInfo.TransactionId = transaction.Value;
+                var transactionPayerEmail = db.DealEEVAs.FirstOrDefault(eeva=>eeva.Attribute==transaction.Value);
+                if (transactionPayerEmail != null) {
+                    transactionInfo.PayerEmail = transactionPayerEmail.Value;
+                    transactionsInfo.Add(transactionInfo);
+                }
+                
+            }
+
+            //currentTansactions.Transactions = transactions;
+
+            return transactionsInfo;
         }
     }
 }
