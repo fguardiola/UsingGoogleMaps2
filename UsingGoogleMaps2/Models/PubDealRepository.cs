@@ -314,16 +314,16 @@ namespace UsingGoogleMaps2.Models
             var myDeals = db.Deals.Where(d=>d.FK_Pub==pubId);
             return myDeals.OrderByDescending(entries => entries.PublicationDate).Take(20).ToList();//20 last  entries of the database sorted by DateAdded*/
         }
-        public System.Collections.Generic.IEnumerable<TransactionInfo> CurrentTransactions(int id)
+        public System.Collections.Generic.IEnumerable<TransactionInfoSimple> CurrentTransactions(int id)
         {
-            List<TransactionInfo> transactionsInfo = new List<TransactionInfo>();
+            List<TransactionInfoSimple> transactionsInfo = new List<TransactionInfoSimple>();
             List<DealEEVA> transactions = new List<DealEEVA>();
             var dealEEVAs = db.DealEEVAs.Where(eeva => eeva.FK_Deal == id);
             var dealTransactions = dealEEVAs.Where(eeva => eeva.Attribute == "Transaction");
             foreach (var transaction in dealTransactions)
             {
                 //if there are more DealEEVAs related with an actual transaction next functionality must be changed
-                TransactionInfo transactionInfo=new TransactionInfo();
+                TransactionInfoSimple transactionInfo = new TransactionInfoSimple();
                 transactionInfo.DealId = transaction.FK_Deal;
                 transactionInfo.TransactionId = transaction.Value;
                 var transactionPayerEmail = db.DealEEVAs.FirstOrDefault(eeva=>eeva.Attribute==transaction.Value);

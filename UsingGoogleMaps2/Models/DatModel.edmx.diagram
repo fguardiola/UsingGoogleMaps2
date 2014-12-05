@@ -22,6 +22,7 @@
         <EntityTypeShape EntityType="PubDealsDBModel.webpages_OAuthMembership" Width="1.5" PointX="2.75" PointY="7.75" />
         <EntityTypeShape EntityType="PubDealsDBModel.webpages_Roles" Width="1.5" PointX="7.75" PointY="7.875" />
         <AssociationConnector Association="PubDealsDBModel.webpages_UsersInRoles" />
+        <EntityTypeShape EntityType="PubDealsDBModel.TransactionInfo" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

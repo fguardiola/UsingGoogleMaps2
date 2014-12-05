@@ -24,7 +24,7 @@ namespace UsingGoogleMaps2.Models
 
        byte[] GetImageIfExistBinaryFormat(int dealId);
        IEnumerable<Deal> ManageDeals(int pubId);
-       IEnumerable<TransactionInfo> CurrentTransactions(int id);
+       IEnumerable<TransactionInfoSimple> CurrentTransactions(int id);
       
        
     }

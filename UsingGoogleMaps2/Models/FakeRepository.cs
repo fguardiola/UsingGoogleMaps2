@@ -187,7 +187,7 @@ namespace UsingGoogleMaps2.Models
          }
 
 
-         public IEnumerable<TransactionInfo> CurrentTransactions(int id)
+         public IEnumerable<TransactionInfoSimple> CurrentTransactions(int id)
          {
              throw new NotImplementedException();
          }

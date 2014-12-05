@@ -81,6 +81,18 @@
           <Property Name="VouchersSold" Type="int" Nullable="false" />
           <Property Name="PublicationDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="TransactionInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PayerEmail" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PayDay" Type="datetime" Nullable="false" />
+          <Property Name="Pub" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AmmountPaid" Type="float" />
+        </EntityType>
         <EntityType Name="UserProfile">
           <Key>
             <PropertyRef Name="UserId" />
@@ -220,6 +232,7 @@
           <EntitySet Name="PubEEVAs" EntityType="Self.PubEEVAs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pubs" EntityType="Self.Pubs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stats" EntityType="Self.Stats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionInfo" EntityType="Self.TransactionInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
@@ -440,6 +453,7 @@
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="UserProfile" EntitySet="UserProfiles" />
           </AssociationSet>
+          <EntitySet Name="TransactionInfoes" EntityType="PubDealsDBModel.TransactionInfo" />
         </EntityContainer>
         <EntityType Name="UserProfile">
           <Key>
@@ -486,6 +500,18 @@
           <End Type="PubDealsDBModel.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
           <End Type="PubDealsDBModel.UserProfile" Role="UserProfile" Multiplicity="*" />
         </Association>
+        <EntityType Name="TransactionInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PayerEmail" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PayDay" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Pub" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AmmountPaid" Type="Double" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -625,6 +651,19 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="TransactionInfoes">
+            <EntityTypeMapping TypeName="PubDealsDBModel.TransactionInfo">
+              <MappingFragment StoreEntitySet="TransactionInfo">
+                <ScalarProperty Name="AmmountPaid" ColumnName="AmmountPaid" />
+                <ScalarProperty Name="Pub" ColumnName="Pub" />
+                <ScalarProperty Name="PayDay" ColumnName="PayDay" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PayerEmail" ColumnName="PayerEmail" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

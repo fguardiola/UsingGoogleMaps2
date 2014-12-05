@@ -170,6 +170,7 @@ C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2\bin\zh-Ha
 C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2\obj\Debug\UsingGoogleMaps2.dll
 C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2\obj\Debug\UsingGoogleMaps2.pdb
 C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2\obj\Debug\UsingGoogleMaps2.csprojResolveAssemblyReference.cache
+C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\NLog.config
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\UsingGoogleMaps2.dll.config
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\UsingGoogleMaps2.dll
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\UsingGoogleMaps2.pdb
@@ -187,6 +188,7 @@ C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\b
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\Microsoft.Web.WebPages.OAuth.dll
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\Newtonsoft.Json.dll
+C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\NLog.dll
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\System.Net.Http.Formatting.dll
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\System.Spatial.dll
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\System.Web.Helpers.dll
@@ -202,6 +204,7 @@ C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\b
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\WebGrease.dll
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\WebMatrix.Data.dll
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\WebMatrix.WebData.dll
+C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\NLog.xml
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\EntityFramework.xml
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\Newtonsoft.Json.xml
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\System.Net.Http.Formatting.xml
@@ -255,7 +258,3 @@ C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\b
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\obj\Debug\UsingGoogleMaps2.dll
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\obj\Debug\UsingGoogleMaps2.pdb
-C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\NLog.config
-C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\NLog.dll
-C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\bin\NLog.xml
-C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2\obj\Debug\UsingGoogleMaps2.csprojResolveAssemblyReference.cache

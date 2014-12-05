@@ -265,7 +265,10 @@
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TemporayDeal.cs" />
-    <Compile Include="Models\TransactionInfo.cs" />
+    <Compile Include="Models\TransactionInfo.cs">
+      <DependentUpon>DatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TransactionInfoSimple.cs" />
     <Compile Include="Models\UserProfile.cs">
       <DependentUpon>DatModel.tt</DependentUpon>
     </Compile>
