@@ -162,7 +162,6 @@ C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2.Tests\bin
 C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2.Tests\obj\Debug\UsingGoogleMaps2.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2.Tests\obj\Debug\UsingGoogleMaps2.Tests.dll
 C:\Users\Vonbismark\Documents\GitHub\UsingGoogleMaps2\UsingGoogleMaps2.Tests\obj\Debug\UsingGoogleMaps2.Tests.pdb
-C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2.Tests\bin\Debug\NLog.config
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2.Tests\bin\Debug\UsingGoogleMaps2.Tests.dll.config
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2.Tests\bin\Debug\UsingGoogleMaps2.Tests.dll
 C:\Users\Fernando\Google Drive\Final Project\UsingGoogleMaps2\UsingGoogleMaps2.Tests\bin\Debug\UsingGoogleMaps2.Tests.pdb

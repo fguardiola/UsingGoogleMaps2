@@ -187,7 +187,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\errorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\PubDealsController.cs" />
@@ -377,12 +376,6 @@
       <DependentUpon>DataModel2.edmx</DependentUpon>
       <LastGenOutput>DataModel2.cs</LastGenOutput>
     </Content>
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Properties\PublishProfiles\demoMVCApp.pubxml" />
     <None Include="Properties\PublishProfiles\pubDeals %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\pubDeals %283%29.pubxml" />
@@ -461,11 +454,10 @@
     <Content Include="Views\PubDeals\Details.cshtml" />
     <Content Include="Views\PubDeals\ManageDeals.cshtml" />
     <Content Include="Views\PubDeals\IPN.cshtml" />
-    <Content Include="Views\PayPal\IPNPayPal.cshtml" />
     <Content Include="Views\PubDeals\boorrar.cshtml" />
     <Content Include="Views\PubDeals\DealPubOwnerDetails.cshtml" />
     <Content Include="Views\PubDeals\CurrentTransactions.cshtml" />
-    <None Include="Views\PubDeals\CurrentTransactions2cshtml" />
+    <Content Include="Views\PayPal\IPNPayPal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
