@@ -182,6 +182,7 @@
       <End Role="webpages_Roles" EntitySet="webpages_Roles" />
       <End Role="UserProfile" EntitySet="UserProfiles" />
     </AssociationSet>
+    <EntitySet Name="TransactionInfoes" EntityType="PubDealsDBModel.TransactionInfo" />
   </EntityContainer>
   <EntityType Name="UserProfile">
     <Key>
@@ -228,4 +229,16 @@
     <End Type="PubDealsDBModel.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
     <End Type="PubDealsDBModel.UserProfile" Role="UserProfile" Multiplicity="*" />
   </Association>
+  <EntityType Name="TransactionInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PayerEmail" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PayDay" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Pub" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="AmmountPaid" Type="Double" />
+  </EntityType>
 </Schema>

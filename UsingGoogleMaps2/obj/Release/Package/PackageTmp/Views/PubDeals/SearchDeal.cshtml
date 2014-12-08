@@ -15,7 +15,8 @@
         <legend>SearchPreferences</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Area)
+             @Html.DisplayName("Area")
+            @*@Html.LabelFor(model => model.Area)*@
         </div>
         <div>
 
@@ -23,7 +24,8 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.PriceMax)
+             @Html.DisplayName("Max Price")
+            @*@Html.LabelFor(model => model.PriceMax)*@
         </div>
         <div>
 
@@ -31,11 +33,21 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.PropertyType)
+             @Html.DisplayName("Property Type")
+            @*@Html.LabelFor(model => model.PropertyType)*@
         </div>
         <div>
 
             @Html.DropDownList("PropertyType")
+        </div>
+
+        <div class="editor-label">
+             @Html.DisplayName("Max Distance")
+            @*@Html.LabelFor(model => model.MaxDistance)*@
+        </div>
+        <div>
+
+            @Html.DropDownList("MaxDistance")
         </div>
 
         <p>

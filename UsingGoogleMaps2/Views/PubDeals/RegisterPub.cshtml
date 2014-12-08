@@ -23,7 +23,7 @@
             <legend>Pub</legend>
 
             <div class="editor-label">
-                @Html.LabelFor(model => model.Name)
+                @Html.DisplayName("Name")
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.Name)
@@ -31,7 +31,7 @@
             </div>
 
             <div class="editor-label">
-                @Html.LabelFor(model => model.Category)
+                @Html.DisplayName("Category")
             </div>
             <div class="editor-field">
                 @Html.DropDownList("Category")
@@ -41,14 +41,14 @@
 
 
             <div class="editor-label">
-                @Html.LabelFor(model => model.Area)
+                @Html.DisplayName("Area")
             </div>
             <div class="editor-field">
                 @Html.DropDownList("Area")
                 @Html.ValidationMessageFor(model => model.Area)
             </div>
             <div class="editor-label">
-                @Html.LabelFor(model => model.Address)
+                @Html.DisplayName("Address")
             </div>
             <div class="editor-field">
                 @Html.TextBoxFor(model => model.Address, new { id = "address" })<input type="button" value="Check address on map" onclick="codeAddress()">
@@ -57,7 +57,7 @@
             <div>@Html.HiddenFor(model => model.LatLng, new { id = "latLng" })</div>
 
             <div class="editor-label">
-                @Html.LabelFor(model => model.ContactEmail)
+                @Html.DisplayName("Contact Email")
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.ContactEmail)

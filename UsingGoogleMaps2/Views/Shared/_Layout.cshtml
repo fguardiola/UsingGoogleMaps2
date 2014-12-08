@@ -5,18 +5,20 @@
         <title>@ViewBag.Title - My ASP.NET MVC Application</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
+        <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
         <header>
+            <h1 class="logoText">Pub Deals</h1>  @*mod*@
             <div class="content-wrapper">
-                <div class="float-left">
+               @* <div class="float-left">*@
                     @*<p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>*@
-                    <div class="div_logo">
-                    <img class="imgLogo" src="/Content/images/logo_solo.png" alt="Alternate Text" height="137" width="338" align="left" />
-                    </div>
-                </div>
+                 @*   <div class="div_logo">*@
+                    @*<img class="imgLogo" src="/Content/images/logo_solo.png" alt="Alternate Text" height="137" width="338" align="left" />*@
+                    @*</div>*@
+               @* </div>  *@ 
                 <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")

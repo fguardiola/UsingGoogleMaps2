@@ -134,5 +134,18 @@
         <ScalarProperty Name="RoleId" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="TransactionInfoes">
+      <EntityTypeMapping TypeName="PubDealsDBModel.TransactionInfo">
+        <MappingFragment StoreEntitySet="TransactionInfo">
+          <ScalarProperty Name="AmmountPaid" ColumnName="AmmountPaid" />
+          <ScalarProperty Name="Pub" ColumnName="Pub" />
+          <ScalarProperty Name="PayDay" ColumnName="PayDay" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PayerEmail" ColumnName="PayerEmail" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

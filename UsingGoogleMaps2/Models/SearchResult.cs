@@ -36,15 +36,15 @@ namespace UsingGoogleMaps2.Models
             
             if (!String.IsNullOrEmpty(PubName)) 
             {
-                pubNameString = "<h2>" + PubName + "</h2>";
+                pubNameString = "<h2 class=\"infoWindow\">" + PubName + "</h2>";
             }
             if (!String.IsNullOrEmpty(PubAddress))
             {
-                pubAddressString = "<h3>" + PubAddress + "</h3>";
+                pubAddressString = "<h3 class=\"infoWindow\">" + PubAddress + "</h3>";
             }
             if (!String.IsNullOrEmpty(Description))
             {
-                descriptionString = "<h5>" + Description + "</h5>";
+                descriptionString = "<h5 class=\"infoWindow\">" + Description + "</h5>";
             }
 
             

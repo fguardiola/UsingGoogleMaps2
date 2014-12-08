@@ -76,7 +76,7 @@ namespace UsingGoogleMaps2.Models
             //Distance
            
             var maxDistance = SearchPreferences.DistanceMaxToDecimal(searchPreferences.MaxDistance);
-            var DealsArea = db.Deals.Where(deal => deal.Pub.Area == searchPreferences.Area);
+            var DealsArea = db.Deals.Where(deal => deal.Pub.Area == searchPreferences.Area).ToList();
             var DealsAreaPrice = DealsArea.Where(deal => deal.Price <= priceDecimal);
             var DealsAreaPriceDistance = DealsAreaPrice.Where(deal => deal.Pub.DistanceTillAreaCenter <= maxDistance); 
             var DealsAreaPriceTimeDistance = DealsAreaPrice.Where(deal => deal.EndDate >= DateTime.Now);
