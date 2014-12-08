@@ -5,6 +5,7 @@
 }
 
 <h2>Post New Deal</h2>
+<br />
 
 @using (Html.BeginForm("CreateNewDealWithPicture", "PubDeals", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -88,7 +89,7 @@
     @Html.ActionLink("Back to List", "Index")
 </div>*@
 
-@* ?????Add a way to disable the submit button during the process of uploading picture *@
+
 
 @section scripts {
     <script>

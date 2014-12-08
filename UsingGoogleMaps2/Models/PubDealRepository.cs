@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using System.IO;
 using System.Data.Entity.Validation;
 namespace UsingGoogleMaps2.Models
@@ -337,6 +332,52 @@ namespace UsingGoogleMaps2.Models
             //currentTansactions.Transactions = transactions;
 
             return transactionsInfo;
+        }
+
+
+        public Deal Delete(int id = 0)
+        {
+            //we should delete all related DealEEVAS before deleting an actual deal
+            var relatedEEVAs = db.DealEEVAs.Where(eeva => eeva.FK_Deal == id).ToList();
+            foreach (var eeva in relatedEEVAs)
+            {
+                DealEEVA dealEEVA = db.DealEEVAs.Find(eeva.Id);
+                if (dealEEVA != null) 
+                {
+                    //delete image if exist
+                    if (eeva.Attribute == "DealImage") 
+                    { 
+                     //find image in db2 to delete
+                        var imag = db2.Images.FirstOrDefault(img => img.Name == eeva.Value);
+                        if (imag != null) 
+                        {
+                            db2.Images.Remove(imag);
+                            db2.SaveChanges();
+                        }
+                    
+                    }
+                    //delete eeva
+                    db.DealEEVAs.Remove(dealEEVA);
+                    db.SaveChanges();
+                    
+                }
+
+            }
+           //delete deal after deleting all related eevas
+            Deal entry = db.Deals.Find(id);
+            return entry;
+        }
+
+        public bool DeleteConfirmed(int id)
+        {
+            Deal entry = db.Deals.Find(id);
+            if (entry == null) return false;
+            else
+            {
+                db.Deals.Remove(entry);
+                db.SaveChanges();
+                return true;
+            }
         }
     }
 }

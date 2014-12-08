@@ -283,6 +283,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\backgroundImage2.jpg" />
+    <Content Include="Content\images\backgroundImage4.jpg" />
+    <Content Include="Content\images\backgroundImage5.jpg" />
+    <Content Include="Content\images\backgroundImage6.jpg" />
+    <Content Include="Content\images\backgroundImage8.jpg" />
+    <Content Include="Content\images\bar-2w.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo2.png" />
     <Content Include="Content\images\logo_solo.png" />
@@ -462,6 +468,8 @@
     <Content Include="Views\PubDeals\DealPubOwnerDetails.cshtml" />
     <Content Include="Views\PubDeals\CurrentTransactions.cshtml" />
     <Content Include="Views\PayPal\IPNPayPal.cshtml" />
+    <Content Include="Views\PubDeals\ThankYouDelete.cshtml" />
+    <Content Include="Views\PubDeals\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

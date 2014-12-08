@@ -7,7 +7,7 @@
 <h2>Manage Last Deals</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateNewDealWithPicture")
+    @Html.ActionLink("Create New", "CreateNewDealWithPicture", new { id = @ViewBag.PubId })
 </p>
 <table>
     <tr>
@@ -48,8 +48,12 @@
     <tr>
         
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
+            
+                <div style="word-wrap:break-word;" class="descriptionText">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </div>
+
+</td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
         </td>

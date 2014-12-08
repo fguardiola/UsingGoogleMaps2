@@ -191,5 +191,16 @@ namespace UsingGoogleMaps2.Models
          {
              throw new NotImplementedException();
          }
+
+
+         public Deal Delete(int id = 0)
+         {
+             throw new NotImplementedException();
+         }
+
+         public bool DeleteConfirmed(int id)
+         {
+             throw new NotImplementedException();
+         }
     }
 }

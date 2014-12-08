@@ -5,6 +5,7 @@
 }
 
 <h2>Search</h2>
+<br />
 
 @using (Html.BeginForm())
 {
@@ -22,7 +23,7 @@
 
             @Html.DropDownList("Area")
         </div>
-
+        <br />
         <div class="editor-label">
              @Html.DisplayName("Max Price")
             @*@Html.LabelFor(model => model.PriceMax)*@
@@ -31,7 +32,7 @@
 
             @Html.DropDownList("PriceMax")
         </div>
-
+        <br />
         <div class="editor-label">
              @Html.DisplayName("Property Type")
             @*@Html.LabelFor(model => model.PropertyType)*@
@@ -40,7 +41,7 @@
 
             @Html.DropDownList("PropertyType")
         </div>
-
+        <br />
         <div class="editor-label">
              @Html.DisplayName("Max Distance")
             @*@Html.LabelFor(model => model.MaxDistance)*@
@@ -49,7 +50,7 @@
 
             @Html.DropDownList("MaxDistance")
         </div>
-
+       
         <p>
             <input type="submit" value="Search" />
         </p>

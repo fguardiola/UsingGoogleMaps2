@@ -67,11 +67,13 @@ namespace UsingGoogleMaps2.Controllers
 
         public ActionResult ThankYouRegisterPub()
         {
+           
             return View();
         }
 
-        public ActionResult ThankYouPostNewDeal()
+        public ActionResult ThankYouPostNewDeal(int id = 0)
         {
+            ViewBag.PubId = id;
             return View();
         }
 
@@ -123,7 +125,7 @@ namespace UsingGoogleMaps2.Controllers
                 //_repository.UserName = User.Identity.Name;/*Comment for testing*/
                 _repository.CreateDealWithImage(deal);
 
-                return RedirectToAction("ThankYouPostNewDeal", "PubDeals");
+                return RedirectToAction("ThankYouPostNewDeal", "PubDeals", new { id = deal.FK_Pub });
 
             }
 
@@ -248,7 +250,7 @@ namespace UsingGoogleMaps2.Controllers
 
         public ActionResult ManageDeals(int id = 0)
         {
-
+            ViewBag.PubId = id;
             var lastDeals = _repository.ManageDeals(id);
 
             //if (dealDetails == null)
@@ -259,8 +261,45 @@ namespace UsingGoogleMaps2.Controllers
             return View(lastDeals);
         }
 
-        
-       
+        [Authorize]
+        public ActionResult Delete(int id = 0)
+        {
+            Deal entry = _repository.Delete(id);
+
+            if (entry == null)
+            {
+                return HttpNotFound();
+            }
+            return View(entry);
+        }
+
+
+        // POST: /ListUpdDel/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var pubId = 0;
+            var dealTemp = db.Deals.FirstOrDefault(deal => deal.Id == id);
+            if (dealTemp != null)
+            {
+                pubId = dealTemp.Pub.Id;
+            }
+            bool entryFound = _repository.DeleteConfirmed(id);
+            if (entryFound)
+            {
+                ViewBag.pubId = pubId;
+                return RedirectToAction("ThankYouDelete", new { id = pubId });
+            }
+            else return RedirectToAction("ManageDeals", new { id =pubId });
+
+        }
+        public ActionResult ThankYouDelete(int id=0)
+        {
+            ViewBag.pubId = id;
+            return View();
+        }
 
         
        
