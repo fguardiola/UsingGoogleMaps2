@@ -4,7 +4,8 @@
     ViewBag.Title = "RegisterPub";
 }
 
-<h2>Register new Pub</h2>
+<h2>Register a new Pub</h2>
+<br />
 
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_Tm0LskVQEn34c-5WTBMC4velnOZb7vQ&sensor=false"></script>
 
@@ -29,6 +30,7 @@
                 @Html.EditorFor(model => model.Name)
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
+            <br />
 
             <div class="editor-label">
                 @Html.DisplayName("Category")
@@ -37,7 +39,7 @@
                 @Html.DropDownList("Category")
                 @Html.ValidationMessageFor(model => model.Category)
             </div>
-
+            <br />
 
 
             <div class="editor-label">
@@ -47,6 +49,8 @@
                 @Html.DropDownList("Area")
                 @Html.ValidationMessageFor(model => model.Area)
             </div>
+            <br />
+
             <div class="editor-label">
                 @Html.DisplayName("Address")
             </div>
@@ -54,6 +58,8 @@
                 @Html.TextBoxFor(model => model.Address, new { id = "address" })<input type="button" value="Check address on map" onclick="codeAddress()">
                 @Html.ValidationMessageFor(model => model.Address)
             </div>
+            <br />
+
             <div>@Html.HiddenFor(model => model.LatLng, new { id = "latLng" })</div>
 
             <div class="editor-label">
@@ -77,4 +83,4 @@
     </div>
 
 </div>
-<div id="map_canvas" class="map" style="height:500px;width:500px;"></div>
+<div id="map_canvas" class="map" style="height:500px;width:500px;"><br /><br /></div>
