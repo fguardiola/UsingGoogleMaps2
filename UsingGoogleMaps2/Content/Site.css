@@ -874,15 +874,7 @@ ul#menu2 {
             }
 /*----------------------------------------------------------*/
 
-/*LOGO*/
-.imgLogo {
-    display: block;
-    max-width:225px;
-    max-height:92px;
-    width: auto;
-    margin-bottom:10px;
-    height: auto;
-}
+
 
 /*Buy Button*/
 
@@ -910,32 +902,12 @@ max-width:50%;
     float:left;
 }
 
-.logoText{
-       max-width: 20%
-       background: #333333;
-        font-size: 60px;
-        text-align: left;
-        float:left;
-        /*margin-top: 50px;*/
-        /*font-family: monospace;*/
-        margin-left: 20px;
-        margin-top: 0;
-        font-family: cursive;
-        font-family: sans-serif;
-        font-family: 'Indie Flower', cursive;
-        letter-spacing: -20px;
-        letter-spacing: 5px;
-        color:#333333;
-        text-transform: uppercase;
-        /*css3*/
-        text-shadow:1px 2px 15px #00FF00;/*x offset yoffset blur color */
-        /*text-shadow:0 1px 0 white,*/
-        /*1px 2px 0 red;*/
-        font-variant: small-caps;
-}
+
 .content-wrapper{
     max-width: 80%;
+   
     background-color: #333333;
+    
 
     
     /*width: 100%;*/
@@ -955,9 +927,7 @@ footer{
 
 #body{
     background-color: black;
-    /*background-image:url(/Content/images/backgroundImage8.jpg);*/
-     /*background-image:url(/Content/images/backgroundImage6.jpg);*/
-     /*background-image:url(http://p1.pichost.me/640/15/1383650.jpg);*/
+   
       
 }
 .loginmessage{
@@ -981,4 +951,23 @@ margin-bottom:20px;
 
 .display-label{
     text-decoration:underline;
+}
+
+.logoPubDeals {
+float:left;
+margin-left:50px;
+margin-bottom:10px;
+margin-top:10px;
+}
+
+.float-left {
+    
+margin-bottom:10px;
+margin-top:0;
+margin-left:5px;
+
+}
+
+header .content-wrapper {
+    padding-top: 10px;
 }

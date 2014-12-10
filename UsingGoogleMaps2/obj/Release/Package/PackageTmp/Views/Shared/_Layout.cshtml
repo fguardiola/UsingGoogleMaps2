@@ -11,14 +11,15 @@
     </head>
     <body>
         <header>
-            <h1 class="logoText">Pub Deals</h1>  @*mod*@
+          
+            
+             @*mod*@
             <div class="content-wrapper">
-               @* <div class="float-left">*@
-                    @*<p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>*@
-                 @*   <div class="div_logo">*@
-                    @*<img class="imgLogo" src="/Content/images/logo_solo.png" alt="Alternate Text" height="137" width="338" align="left" />*@
-                    @*</div>*@
-               @* </div>  *@ 
+                <div class="float-left">
+                    
+                    @Html.Raw(@Html.ActionLink("[replacetext]", "About", "Home").ToHtmlString().Replace("[replacetext]", "<img src=\"/Content/images/logo7.png\" alt=\"PubDels\"> "))
+                    @*<img src="/Content/images/logo7.png" alt="PubDels">*@
+                </div>   
                 <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
@@ -28,11 +29,10 @@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            @*<li>@Html.ActionLink("Show all Pubs on Map", "ShowAllPubsOnMap", "Maps")</li>
-                            <li>@Html.ActionLink("Show Pubs on Map", "ShowPubsOnMap", "Maps")</li>*@
+                         
                             <li>@Html.ActionLink("Search a Deal", "SearchDeal", "PubDeals")</li>
                             <li>@Html.ActionLink("myPubDeals", "MyPubDeals", "PubDeals")</li>
-                            @*<li>@Html.ActionLink("Regiter a pub", "RegisterPub", "PubDeals")</li>*@
+                          
                             @*<li>@Html.ActionLink("Enter Area Coordinates", "EnterLatLongDUblinCoordinatesTable", "PubDeals")</li>*@
                            
                         </ul>

@@ -26,14 +26,14 @@ namespace UsingGoogleMaps2.Models
         public void RegisterPub(Pub pub)
         {
             //calculate distance from pub to the area's centre
-            var areaCentre=db.DublinAreasCoordinates.FirstOrDefault(ent=>ent.Area==pub.Area);
+            var areaCentre = db.DublinAreasCoordinates.FirstOrDefault(ent => ent.Area == pub.Area);
             //careful with format=> stored like a string= "(lat,long)"
-            var LatLongAreaCentre=areaCentre.LatLng;
+            var LatLongAreaCentre = areaCentre.LatLng;
             //take lat long from string
-            char[] delimiterChars = {',','(',')' };
+            char[] delimiterChars = { ',', '(', ')' };
             string[] LatLongAreaCentreSplit = LatLongAreaCentre.Split(delimiterChars);
             double latCentre = Convert.ToDouble(LatLongAreaCentreSplit[1]);
-            double longCentre =Convert.ToDouble( LatLongAreaCentreSplit[2]);
+            double longCentre = Convert.ToDouble(LatLongAreaCentreSplit[2]);
             string[] LatLongPubSplit = pub.LatLng.Split(delimiterChars);
             double latPub = Convert.ToDouble(LatLongPubSplit[1]);
             double longPub = Convert.ToDouble(LatLongPubSplit[2]);
@@ -59,69 +59,74 @@ namespace UsingGoogleMaps2.Models
             Pub pub = db.Pubs.Find(id);
             return pub;
         }
-       
+
         // Search in db deals that match the user preferences and create list of objects with necesary info to show on map the pub's with deals and deals's info
         public SearchResults SearchResults(SearchPreferences searchPreferences)
         {
             SearchResults searchresults = new SearchResults();
 
-            try {
-            //Search algorithm
-            var priceDecimal = SearchPreferences.PriceMaxToDecimal(searchPreferences.PriceMax);
-            //Distance
-           
-            var maxDistance = SearchPreferences.DistanceMaxToDecimal(searchPreferences.MaxDistance);
-            var DealsArea = db.Deals.Where(deal => deal.Pub.Area == searchPreferences.Area).ToList();
-            var DealsAreaPrice = DealsArea.Where(deal => deal.Price <= priceDecimal);
-            var DealsAreaPriceDistance = DealsAreaPrice.Where(deal => deal.Pub.DistanceTillAreaCenter <= maxDistance); 
-            var DealsAreaPriceTimeDistance = DealsAreaPrice.Where(deal => deal.EndDate >= DateTime.Now);
-            
-            
-
-      
-            foreach (var deal in DealsAreaPriceTimeDistance)
+            try
             {
-                //Vouchers left?
-                if((deal.VouchersForSale-deal.VouchersSold>=1)){
-                SearchResult searchResult = new SearchResult();
-
-                var image = GetImageIfExistBinaryFormat(deal.Id);
-                if (image != null) searchResult.DealImage = image;
+                //for any area
+                var DealsArea = db.Deals.ToList(); 
+                //Search algorithm
+                var priceDecimal = SearchPreferences.PriceMaxToDecimal(searchPreferences.PriceMax);
+                //Distance
+                var maxDistance = SearchPreferences.DistanceMaxToDecimal(searchPreferences.MaxDistance);
+                //An area selected
+                if (searchPreferences.Area != "Any Area") DealsArea = db.Deals.Where(deal => deal.Pub.Area == searchPreferences.Area).ToList();
                
-                searchResult.PubAddress = deal.Pub.Address;
-                searchResult.PubName = deal.Pub.Name;
-                searchResult.Description = deal.Description;
-                searchResult.LatLng = deal.Pub.LatLng;
-                // to pass to deatils view
-                searchResult.DealId = deal.Id;
-                //set content string for google maps api
-                searchResult.SetContentString();
-              
-                // Add deal data to list of results
-                 searchresults.AddResult(searchResult);
-            }
-            }
+                var dealsAreaPrice = DealsArea.Where(deal => deal.Price <= priceDecimal);
+                var dealsAreaPriceDistance = dealsAreaPrice.Where(deal => deal.Pub.DistanceTillAreaCenter <= maxDistance);
+                var dealsAreaPriceTimeDistance = dealsAreaPrice.Where(deal => deal.EndDate >= DateTime.Now);
+
+
+
+
+                foreach (var deal in dealsAreaPriceTimeDistance)
+                {
+                    //Vouchers left?
+                    if ((deal.VouchersForSale - deal.VouchersSold >= 1))
+                    {
+                        SearchResult searchResult = new SearchResult();
+
+                        var image = GetImageIfExistBinaryFormat(deal.Id);
+                        if (image != null) searchResult.DealImage = image;
+
+                        searchResult.PubAddress = deal.Pub.Address;
+                        searchResult.PubName = deal.Pub.Name;
+                        searchResult.Description = deal.Description;
+                        searchResult.LatLng = deal.Pub.LatLng;
+                        // to pass to deatils view
+                        searchResult.DealId = deal.Id;
+                        //set content string for google maps api
+                        searchResult.SetContentString();
+
+                        // Add deal data to list of results
+                        searchresults.AddResult(searchResult);
+                    }
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine("{0} Exception caught.", e);
             }
             return searchresults;
-           
+
         }
 
 
         public void CreateDealWithImage(TemporayDeal temporayDeal)
         {
-           
+
             HttpPostedFileBase file = temporayDeal.File;
-            bool hasTocreateEEVA=false;
+            bool hasTocreateEEVA = false;
             string nameImageToStore = "";
             if (file != null)
             {
                 // unique name
 
-                hasTocreateEEVA=true;
+                hasTocreateEEVA = true;
                 string nameImage = System.DateTime.Now.ToString("ddMMyyhhmmss");
                 nameImage = nameImage + System.IO.Path.GetFileName(file.FileName);
 
@@ -140,7 +145,7 @@ namespace UsingGoogleMaps2.Models
                     nameImageToStore = nameImage;
                     db2.Images.Add(im);
                     db2.SaveChanges();
-                    
+
 
                 }
             }
@@ -148,12 +153,12 @@ namespace UsingGoogleMaps2.Models
             Deal dealToStore = new Deal();
             Pub pub = db.Pubs.FirstOrDefault(pb => pb.Id == temporayDeal.FK_Pub);
             dealToStore.Pub = pub;
-            dealToStore.FK_Pub=temporayDeal.FK_Pub;
-            dealToStore.DayOfWeeK=temporayDeal.DayOfWeeK;
-            dealToStore.Description=temporayDeal.Description;
-            dealToStore.EndDate=temporayDeal.EndDate;
+            dealToStore.FK_Pub = temporayDeal.FK_Pub;
+            dealToStore.DayOfWeeK = temporayDeal.DayOfWeeK;
+            dealToStore.Description = temporayDeal.Description;
+            dealToStore.EndDate = temporayDeal.EndDate;
             dealToStore.StartDate = temporayDeal.StartDate;
-            dealToStore.Price=temporayDeal.Price;
+            dealToStore.Price = temporayDeal.Price;
             dealToStore.PublicationDate = DateTime.Now;
             dealToStore.VouchersForSale = temporayDeal.VouchersForSale;
             //save in database
@@ -178,13 +183,13 @@ namespace UsingGoogleMaps2.Models
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-               
+
                 throw;
             }
-            
-           
-          
-            
+
+
+
+
             if (hasTocreateEEVA)
             {
                 Deal dealToAgregateEEVA = db.Deals.FirstOrDefault(dl => dl.Id == dealToStore.Id);
@@ -211,7 +216,7 @@ namespace UsingGoogleMaps2.Models
         }
 
 
-        
+
         public DealDetails Details(int id = 0)
         {
             DealDetails dealDetails = new DealDetails();
@@ -222,7 +227,7 @@ namespace UsingGoogleMaps2.Models
             //look for image related
             byte[] image = GetImageIfExistBinaryFormat(id);
             // set dealDetails properties
-            if (image != null) 
+            if (image != null)
             {
                 dealDetails.DealImage = image;
                 var base64 = Convert.ToBase64String(image);
@@ -232,7 +237,7 @@ namespace UsingGoogleMaps2.Models
 
             dealDetails.Price = deal.Price;
             ///////
-            
+
             dealDetails.DealId = deal.Id;
             dealDetails.Description = deal.Description;
             dealDetails.EndDate = deal.EndDate;
@@ -269,7 +274,7 @@ namespace UsingGoogleMaps2.Models
             dealDetails.PubAddress = pub.Address;
             dealDetails.PublicationDate = deal.PublicationDate;
             dealDetails.PubName = company.Name;
-            
+
 
             return dealDetails;
         }
@@ -278,8 +283,8 @@ namespace UsingGoogleMaps2.Models
 
         public byte[] GetImageIfExistBinaryFormat(int dealId)
         {
-            byte[] binaryImage = null;    
-        //looking for related EEVAs
+            byte[] binaryImage = null;
+            //looking for related EEVAs
             var RelatedEEVAs = db.DealEEVAs.Where(eeva => eeva.FK_Deal == dealId);
             //look for DealImage if esxist
             var imageEEVA = RelatedEEVAs.FirstOrDefault(eeva => eeva.Attribute == "DealImage");
@@ -297,16 +302,16 @@ namespace UsingGoogleMaps2.Models
             }
 
 
-            
+
             return binaryImage;
-                
-               
+
+
         }
 
 
         public System.Collections.Generic.IEnumerable<Deal> ManageDeals(int pubId)
         {
-            var myDeals = db.Deals.Where(d=>d.FK_Pub==pubId);
+            var myDeals = db.Deals.Where(d => d.FK_Pub == pubId);
             return myDeals.OrderByDescending(entries => entries.PublicationDate).Take(20).ToList();//20 last  entries of the database sorted by DateAdded*/
         }
         public System.Collections.Generic.IEnumerable<TransactionInfoSimple> CurrentTransactions(int id)
@@ -321,12 +326,13 @@ namespace UsingGoogleMaps2.Models
                 TransactionInfoSimple transactionInfo = new TransactionInfoSimple();
                 transactionInfo.DealId = transaction.FK_Deal;
                 transactionInfo.TransactionId = transaction.Value;
-                var transactionPayerEmail = db.DealEEVAs.FirstOrDefault(eeva=>eeva.Attribute==transaction.Value);
-                if (transactionPayerEmail != null) {
+                var transactionPayerEmail = db.DealEEVAs.FirstOrDefault(eeva => eeva.Attribute == transaction.Value);
+                if (transactionPayerEmail != null)
+                {
                     transactionInfo.PayerEmail = transactionPayerEmail.Value;
                     transactionsInfo.Add(transactionInfo);
                 }
-                
+
             }
 
             //currentTansactions.Transactions = transactions;
@@ -342,28 +348,28 @@ namespace UsingGoogleMaps2.Models
             foreach (var eeva in relatedEEVAs)
             {
                 DealEEVA dealEEVA = db.DealEEVAs.Find(eeva.Id);
-                if (dealEEVA != null) 
+                if (dealEEVA != null)
                 {
                     //delete image if exist
-                    if (eeva.Attribute == "DealImage") 
-                    { 
-                     //find image in db2 to delete
+                    if (eeva.Attribute == "DealImage")
+                    {
+                        //find image in db2 to delete
                         var imag = db2.Images.FirstOrDefault(img => img.Name == eeva.Value);
-                        if (imag != null) 
+                        if (imag != null)
                         {
                             db2.Images.Remove(imag);
                             db2.SaveChanges();
                         }
-                    
+
                     }
                     //delete eeva
                     db.DealEEVAs.Remove(dealEEVA);
                     db.SaveChanges();
-                    
+
                 }
 
             }
-           //delete deal after deleting all related eevas
+            //delete deal after deleting all related eevas
             Deal entry = db.Deals.Find(id);
             return entry;
         }
